@@ -25,7 +25,7 @@
 <form class="form-horizontal">
 <fieldset>
 <div class="form-group">
-<label class="col-lg-4 control-label">Mon Email Melcloud</label>
+<label class="col-lg-4 control-label">Email Melcloud</label>
 <div class="col-lg-2">
 <input class="configKey form-control" data-l1key="MyEmail" />
 </div>
@@ -33,7 +33,7 @@
 
 
 <div class="form-group">
-<label class="col-lg-4 control-label">Mon Mot de passe Melcloud</label>
+<label class="col-lg-4 control-label">Mot de passe Melcloud</label>
 <div class="col-lg-2">
 <input class="configKey form-control" data-l1key="MyPassword" type=password/>
 </div>
@@ -41,24 +41,3 @@
 </div>
 </fieldset>
 </form>
-
-<script>
-$('.bt_restartTeleinfoDeamon').on('click', function () {
-                                  $.ajax({// fonction permettant de faire de l'ajax
-                                         type: "POST", // methode de transmission des données au fichier php
-                                         url: "plugins/melcloud/core/ajax/melcloud.ajax.php", // url du fichier php
-                                         data: {
-                                         action: "postSave",
-                                         id : $(this).closest('.slaveConfig').attr('data-slave_id')
-                                         },
-                                         dataType: 'json',
-                                         error: function (request, status, error) {
-                                         handleAjaxError(request, status, error);
-                                         },
-                                         success: function (data) {
-                                         $('#div_alert').showAlert({message: data.result, level: 'danger'});
-                                         }
-
-                                         });
-                                  });
-</script>
