@@ -1,0 +1,177 @@
+{
+  "name": "air",
+  "commands": [
+    {
+      "name": "Set Consigne Zone 1",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetTemperatureZone1",
+        "idflag" : 8589934592,
+        "minValue" : 10,
+        "maxValue" : 30
+      },
+      "isVisible": 1,
+      "logicalId": "SetTemperatureZone1"
+    },
+    {
+      "name": "Température Zone 1",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "RoomTemperatureZone1",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Set Consigne Zone 2",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetTemperatureZone2",
+        "idflag" : 34359738880,
+        "minValue" : 10,
+        "maxValue" : 30
+      },
+      "isVisible": 1,
+      "logicalId": "SetTemperatureZone2"
+    },
+    {
+      "name": "Température Zone 2",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "RoomTemperatureZone2",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Température Extérieure",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "OutdoorTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Température ECS",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "TankWaterTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Forcer ECS",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fa fa-lightbulb-o\"><\/i>",
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "option" : "true",
+        "flag" : "ForcedHotWaterMode",
+        "idflag" : 65536
+      },
+      "isVisible": 1,
+      "logicalId": "On"
+    },
+    {
+      "name": "Enlever Forcer ECS",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fa fa-power-off\"><\/i>",
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "option" : "false",
+        "flag" : "ForcedHotWaterMode",
+        "idflag" : 65536
+      },
+      "isVisible": 1,
+      "logicalId": "Off"
+    },
+    {
+      "name": "Dernière Communication",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "LastTimeStamp",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Prochaine Communication",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "NextCommunication",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Rafraichir",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fa fa-refresh\"><\/i>",
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "request" : "refresh"
+      },
+      "isVisible": 1,
+      "logicalId": "refresh"
+    }
+  ]
+}
