@@ -22,8 +22,7 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 class mitsubishi extends eqLogic {
 
 
-  public static function SetModif($option,$flag,$idflag){
-
+  public function SetModif($option,$flag,$idflag){
     log::add('mitsubishi', 'info', 'Modification '.$flag.' '.$idflag.' '.$option);
 
     $montoken = config::byKey('MyToken', 'mitsubishi', '');
@@ -209,11 +208,11 @@ class mitsubishi extends eqLogic {
 
         if ($device['Device']['DeviceType'] == '0'){
           $mylogical->setConfiguration('typepac', 'air/air');
-          $this->loadCmdFromConf('air');
+          $mylogical->loadCmdFromConf('air');
         }
         if ($device['Device']['DeviceType'] == '1'){
           $mylogical->setConfiguration('typepac', 'air/eau');
-          $this->loadCmdFromConf('water');
+          $mylogical->loadCmdFromConf('water');
         }
 
         $device['Device']['ListHistory24Formatters'] = '';
