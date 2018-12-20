@@ -25,9 +25,9 @@
 <form class="form-horizontal">
 <fieldset>
 <div class="form-group">
-<label class="col-lg-4 control-label">Email Melcloud</label>
+<label class="col-lg-4 control-label">Email du compte Melcloud</label>
 <div class="col-lg-2">
-<input class="configKey form-control" data-l1key="MyEmail" />
+<input class="configKey form-control" data-l1key="mail" />
 </div>
 </div>
 
@@ -35,7 +35,7 @@
 <div class="form-group">
 <label class="col-lg-4 control-label">Mot de passe Melcloud</label>
 <div class="col-lg-2">
-<input class="configKey form-control" data-l1key="MyPassword" type=password/>
+<input class="configKey form-control" data-l1key="password" type=password/>
 </div>
 
 </div>

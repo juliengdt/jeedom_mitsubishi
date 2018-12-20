@@ -22,21 +22,21 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 class mitsubishi extends eqLogic {
 
   public static function cron5() {
-    if (config::byKey('MyToken', 'melcloud', '') == '') {
+    if (config::byKey('token', 'melcloud', '') == '') {
       mitsubishi::getToken();
     }
     mitsubishi::refresh();
   }
 
   public static function refresh() {
-    $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('MyToken', 'melcloud', '')),array());
+    $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'melcloud', '')),array());
     log::add('mitsubishi', 'debug', 'Retrive ' . print_r($json, true));
   }
 
   public static function getToken() {
     $data = array(
-      'Email' => config::byKey('MyEmail', 'mitsubishi'),
-      'Password' => config::byKey('MyPassword', 'mitsubishi'),
+      'Email' => config::byKey('mail', 'mitsubishi'),
+      'Password' => config::byKey('password', 'mitsubishi'),
       'Language' => '7',
       'AppVersion' => '1.7.1.0',
       'Persist' => 'true',
@@ -46,25 +46,15 @@ class mitsubishi extends eqLogic {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Login/ClientLogin',array(),$data);
 
     if ($json['ErrorId'] == null) {
-      log::add('mitsubishi', 'debug', 'Login ok ');
-      config::save("MyToken", $json['LoginData']['ContextKey'], 'mitsubishi');
+      config::save("token", $json['LoginData']['ContextKey'], 'mitsubishi');
     } else {
-      log::add('mitsubishi', 'debug', 'Login ou mot de passe Melcloud incorrecte.');
+      log::add('mitsubishi', 'debug', 'Connexion error');
     }
 
   }
 
   public static function callMelcloud($_url = '', $_header = array(), $_data = array()) {
-    $request_http = new com_http($_url);
-    if (!empty($_data)) {
-      $request_http->setPost($_data);
-    }
-    if (!empty($_header)) {
-      $request_http->setHeader($_header);
-    }
-    $request->setHeader(array('X-MitsContextKey: ' . $montoken));
-    $output = $request_http->exec(30);
-    return json_decode($output, true);
+    
   }
 
 }
