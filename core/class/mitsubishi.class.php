@@ -33,10 +33,6 @@ class mitsubishi extends eqLogic {
     log::add('mitsubishi', 'debug', 'Retrive ' . print_r($json, true));
   }
 
-  public function SetModif($option,$flag,$idflag){
-
-  }
-
   public static function getToken() {
     $data = array(
       'Email' => config::byKey('MyEmail', 'mitsubishi'),
@@ -70,36 +66,6 @@ class mitsubishi extends eqLogic {
     $output = $request_http->exec(30);
     return json_decode($output, true);
   }
-
-  public function loadCmdFromConf($type) {
-		if (!is_file(dirname(__FILE__) . '/../config/devices/' . $type . '.json')) {
-			return;
-		}
-		$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $type . '.json');
-		if (!is_json($content)) {
-			return;
-		}
-		$device = json_decode($content, true);
-		if (!is_array($device) || !isset($device['commands'])) {
-			return true;
-		}
-		foreach ($device['commands'] as $command) {
-			$cmd = null;
-			foreach ($this->getCmd() as $liste_cmd) {
-				if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
-				|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
-					$cmd = $liste_cmd;
-					break;
-				}
-			}
-			if ($cmd == null || !is_object($cmd)) {
-				$cmd = new shellyCmd();
-				$cmd->setEqLogic_id($this->getId());
-				utils::a2o($cmd, $command);
-				$cmd->save();
-			}
-		}
-	}
 
 }
 
