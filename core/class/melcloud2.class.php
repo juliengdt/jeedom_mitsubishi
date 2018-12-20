@@ -19,47 +19,55 @@
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
-class mitsubishi extends eqLogic {
+class melcloud2 extends eqLogic {
 
   public static function cron5() {
     if (config::byKey('token', 'melcloud', '') == '') {
-      mitsubishi::getToken();
+      melcloud2::getToken();
     }
-    mitsubishi::refresh();
+    melcloud2::refresh();
   }
 
   public static function refresh() {
-    $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'melcloud', '')),array());
-    log::add('mitsubishi', 'debug', 'Retrive ' . print_r($json, true));
+    $json = melcloud2::callMelcloud('https://app.melcloud.com/melcloud2.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'melcloud', '')),array());
+    log::add('melcloud2', 'debug', 'Retrive ' . print_r($json, true));
   }
 
   public static function getToken() {
     $data = array(
-      'Email' => config::byKey('mail', 'mitsubishi'),
-      'Password' => config::byKey('password', 'mitsubishi'),
+      'Email' => config::byKey('mail', 'melcloud2'),
+      'Password' => config::byKey('password', 'melcloud2'),
       'Language' => '7',
       'AppVersion' => '1.7.1.0',
       'Persist' => 'true',
       'CaptchaChallenge' => 'null',
       'CaptchaResponse' => 'null'
     );
-    $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Login/ClientLogin',array(),$data);
+    $json = melcloud2::callMelcloud('https://app.melcloud.com/melcloud2.Wifi.Client/Login/ClientLogin',array(),$data);
 
     if ($json['ErrorId'] == null) {
-      config::save("token", $json['LoginData']['ContextKey'], 'mitsubishi');
+      config::save("token", $json['LoginData']['ContextKey'], 'melcloud2');
     } else {
-      log::add('mitsubishi', 'debug', 'Connexion error');
+      log::add('melcloud2', 'debug', 'Connexion error');
     }
 
   }
 
   public static function callMelcloud($_url = '', $_header = array(), $_data = array()) {
-    
+    $request_http = new com_http($_url);
+    if (!empty($_data)) {
+      $request_http->setPost($_data);
+    }
+    if (!empty($_header)) {
+      $request_http->setHeader($_header);
+    }
+    $output = $request_http->exec(30);
+    return json_decode($output, true);
   }
 
 }
 
-class mitsubishiCmd extends cmd {
+class melcloud2Cmd extends cmd {
   public function execute($_options = array()) {
     if ($this->getType() == 'action') {
       $Eqlogic = $this->getEqLogic();
@@ -69,7 +77,7 @@ class mitsubishiCmd extends cmd {
         $option = $this->getConfiguration('option');
       }
       $Eqlogic->SetModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
-      mitsubishi::refresh();
+      melcloud2::refresh();
     }
   }
 
