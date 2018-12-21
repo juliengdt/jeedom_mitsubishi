@@ -35,24 +35,37 @@ class mitsubishi extends eqLogic {
     foreach ($json as $building) {
       log::add('mitsubishi', 'debug', 'Building ' . $building['ID']);
       foreach ($json as $building) {
-        foreach ($building['Structure']['Floor'] as $floor) {
-          foreach ($floor['Areas'] as $area) {
-            foreach ($area['Devices'] as $device) {
-              log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
-              $mitsubishi=mitsubishi::byLogicalId($building['ID'] . $device['ID'], 'xiaomihome');
-              /*if (!is_object($mitsubishi)) {
-                $mitsubishi = new mitsubishi();
-                $mitsubishi->setEqType_name('mitsubishi');
-                $mitsubishi->setLogicalId($building['ID'] . $device['ID']);
-                $mitsubishi->setIsEnable(1);
-                $mitsubishi->setIsVisible(1);
-                $mitsubishi->setName($device['Name'] . ' ' . $building['Name']);
-                $mitsubishi->setConfiguration('deviceID', $device['ID']);
-                $mitsubishi->setConfiguration('buildingID', $building['ID']);
-                $mitsubishi->save();
-              }*/
-            }
+        foreach ($building['Structure']['Devices'] as $floor) {
+          log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+          $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'xiaomihome');
+          if (!is_object($mitsubishi)) {
+            $mitsubishi = new mitsubishi();
+            $mitsubishi->setEqType_name('mitsubishi');
+            $mitsubishi->setLogicalId($building['ID'] . $device['ID']);
+            $mitsubishi->setIsEnable(1);
+            $mitsubishi->setIsVisible(1);
+            $mitsubishi->setName($device['DeviceName']);
+            $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+            $mitsubishi->setConfiguration('BuildingID', $building['BuildingID']);
+            $mitsubishi->setConfiguration('DeviceType', $building['Device']['DeviceType']);//0 air/air, 1 air/water
+            $mitsubishi->save();
           }
+          if ($building['Device']['DeviceType'] == 0) {
+            $mitsubishi->loadCmdFromConf('air');
+            $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $building['Device']['ActualFanSpeed']);
+            $mitsubishi->checkAndUpdateCmd('RoomTemperature', $building['Device']['RoomTemperature']);
+            $mitsubishi->checkAndUpdateCmd('OperationMode', $building['Device']['OperationMode']);
+          } else {
+            $mitsubishi->loadCmdFromConf('water');
+            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $building['Device']['RoomTemperatureZone1']);
+            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $building['Device']['RoomTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $building['Device']['OutdoorTemperature']);
+            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $building['Device']['TankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $building['Device']['ForcedHotWaterMode']);
+            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $building['Device']['EcoHotWater']);
+            $mitsubishi->checkAndUpdateCmd('Power', $building['Device']['Power']);
+          }
+
         }
       }
     }
@@ -90,6 +103,36 @@ class mitsubishi extends eqLogic {
     }
     $output = $request_http->exec(30);
     return json_decode($output, true);
+  }
+
+  public function loadCmdFromConf($type) {
+  	if (!is_file(dirname(__FILE__) . '/../config/devices/' . $type . '.json')) {
+  		return;
+  	}
+  	$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $type . '.json');
+  	if (!is_json($content)) {
+  		return;
+  	}
+  	$device = json_decode($content, true);
+  	if (!is_array($device) || !isset($device['commands'])) {
+  		return true;
+  	}
+  	foreach ($device['commands'] as $command) {
+  		$cmd = null;
+  		foreach ($this->getCmd() as $liste_cmd) {
+  			if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
+  			|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
+  				$cmd = $liste_cmd;
+  				break;
+  			}
+  		}
+  		if ($cmd == null || !is_object($cmd)) {
+  			$cmd = new geotravCmd();
+  			$cmd->setEqLogic_id($this->getId());
+  			utils::a2o($cmd, $command);
+  			$cmd->save();
+  		}
+  	}
   }
 
 }

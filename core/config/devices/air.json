@@ -196,36 +196,6 @@
       }
     },
     {
-      "name": "Dernière Communication",
-      "type": "info",
-      "subtype": "numeric",
-      "display": {
-        "generic_type": "DONT"
-      },
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "LastTimeStamp",
-      "template": {
-        "dashboard": "line",
-        "mobile": "line"
-      }
-    },
-    {
-      "name": "Prochaine Communication",
-      "type": "info",
-      "subtype": "numeric",
-      "display": {
-        "generic_type": "DONT"
-      },
-      "isVisible": 0,
-      "isHistorized": 0,
-      "logicalId": "NextCommunication",
-      "template": {
-        "dashboard": "line",
-        "mobile": "line"
-      }
-    },
-    {
       "name": "Rafraichir",
       "type": "action",
       "subtype": "other",
