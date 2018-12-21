@@ -1,5 +1,5 @@
 {
-    "id": "melcloud2",
+    "id": "mitsubishi",
     "name": "Melcloud",
     "description": "Permet de gérer votre PAC Mitsubishi équipée d'un module Wifi MelCloud",
     "author": "lunarok",
@@ -7,6 +7,6 @@
     "category": "wellness",
     "language" : ["fr_FR","en_US"],
   	"compatibility" : ["miniplus","smart","rpi","docker","diy"],
-  	"changelog" : "https://lunarok.github.io/jeedom_docs/plugins/melcloud2/changelog.html",
-  "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/melcloud2/"
+  	"changelog" : "https://lunarok.github.io/jeedom_docs/plugins/mitsubishi/changelog.html",
+  "documentation" : "https://lunarok.github.io/jeedom_docs/plugins/mitsubishi/"
 }
