@@ -34,23 +34,16 @@ class mitsubishi extends eqLogic {
   }
 
   public static function getToken() {
-    $data = array(
-      'Email' => config::byKey('mail', 'mitsubishi'),
-      'Password' => config::byKey('password', 'mitsubishi'),
-      'Language' => '7',
-      'AppVersion' => '1.7.1.0',
-      'Persist' => 'true',
-      'CaptchaChallenge' => 'null',
-      'CaptchaResponse' => 'null'
-    );
-    $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/Login/ClientLogin',array(),$data);
-    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-    if ($json['ErrorId'] == null) {
-      config::save("token", $json['LoginData']['ContextKey'], 'mitsubishi');
-    } else {
-      log::add('mitsubishi', 'debug', 'Connexion error');
+    if (config::byKey('password', 'mitsubishi') != '' && config::byKey('mail', 'mitsubishi') != '') {
+      $data = 'Email='. config::byKey('mail', 'mitsubishi') . '&Password=' . config::byKey('password', 'mitsubishi') . '&Language=7&AppVersion=1.7.1.0&Persist=true&CaptchaChallenge=null&CaptchaResponse=null';
+      $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/Login/ClientLogin',array(),$data);
+      log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+      if ($json['ErrorId'] == null) {
+        config::save("token", $json['LoginData']['ContextKey'], 'mitsubishi');
+      } else {
+        log::add('mitsubishi', 'debug', 'Connexion error');
+      }
     }
-
   }
 
   public static function callMelcloud($_url = '', $_header = array(), $_data = array()) {
