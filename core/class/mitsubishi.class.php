@@ -35,9 +35,9 @@ class mitsubishi extends eqLogic {
     foreach ($json as $building) {
       log::add('mitsubishi', 'debug', 'Building ' . $building['ID']);
       foreach ($json as $building) {
-        foreach ($building['Structure']['Devices'] as $floor) {
+        foreach ($building['Structure']['Devices'] as $device) {
           log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
-          $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'xiaomihome');
+          $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
           if (!is_object($mitsubishi)) {
             $mitsubishi = new mitsubishi();
             $mitsubishi->setEqType_name('mitsubishi');
