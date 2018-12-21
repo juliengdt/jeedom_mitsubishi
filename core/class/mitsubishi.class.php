@@ -30,18 +30,30 @@ class mitsubishi extends eqLogic {
 
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
-    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+    //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
     foreach ($json as $building) {
       log::add('mitsubishi', 'debug', 'Building ' . $building['ID']);
-      /*foreach ($json as $building) {
-        foreach ($building[] as $floor) {
-          foreach ($floor[] as $area) {
-            foreach ($area[] as $device) {
-
+      foreach ($json as $building) {
+        foreach ($building['Structure']['Floor'] as $floor) {
+          foreach ($floor['Areas'] as $area) {
+            foreach ($area['Devices'] as $device) {
+              log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+              $mitsubishi=mitsubishi::byLogicalId($building['ID'] . $device['ID'], 'xiaomihome');
+              /*if (!is_object($mitsubishi)) {
+                $mitsubishi = new mitsubishi();
+                $mitsubishi->setEqType_name('mitsubishi');
+                $mitsubishi->setLogicalId($building['ID'] . $device['ID']);
+                $mitsubishi->setIsEnable(1);
+                $mitsubishi->setIsVisible(1);
+                $mitsubishi->setName($device['Name'] . ' ' . $building['Name']);
+                $mitsubishi->setConfiguration('deviceID', $device['ID']);
+                $mitsubishi->setConfiguration('buildingID', $building['ID']);
+                $mitsubishi->save();
+              }*/
             }
           }
         }
-      }*/
+      }
     }
   }
 
