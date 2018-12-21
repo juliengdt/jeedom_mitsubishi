@@ -30,7 +30,7 @@ class melcloud2 extends eqLogic {
 
   public static function refresh() {
     $json = melcloud2::callMelcloud('https://app.melcloud.com/melcloud2.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'melcloud', '')),array());
-    log::add('melcloud2', 'debug', 'Retrive ' . print_r($json, true));
+    log::add('melcloud2', 'debug', 'Retrieve ' . print_r($json, true));
   }
 
   public static function getToken() {
@@ -44,7 +44,7 @@ class melcloud2 extends eqLogic {
       'CaptchaResponse' => 'null'
     );
     $json = melcloud2::callMelcloud('https://app.melcloud.com/melcloud2.Wifi.Client/Login/ClientLogin',array(),$data);
-
+    log::add('melcloud2', 'debug', 'Retrieve ' . print_r($json, true));
     if ($json['ErrorId'] == null) {
       config::save("token", $json['LoginData']['ContextKey'], 'melcloud2');
     } else {
