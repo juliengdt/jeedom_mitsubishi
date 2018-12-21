@@ -22,16 +22,16 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 class mitsubishi extends eqLogic {
 
   public static function cron5() {
-    if (config::byKey('token', 'melcloud', '') == '') {
+    if (config::byKey('token', 'mitsubishi', '') == '') {
       mitsubishi::getToken();
     }
     mitsubishi::refresh();
   }
 
-  /*public static function refresh() {
-    $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'melcloud', '')),array());
-    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-  }*/
+  public static function refresh() {
+    //$json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
+    //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+  }
 
   public static function getToken() {
     $data = array(
