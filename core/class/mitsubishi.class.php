@@ -29,8 +29,20 @@ class mitsubishi extends eqLogic {
   }
 
   public static function refreshAll() {
-    //$json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
-    //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+    $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
+    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+    foreach ($json as $building) {
+      log::add('mitsubishi', 'debug', 'Building ' . $building['ID']);
+      /*foreach ($json as $building) {
+        foreach ($building[] as $floor) {
+          foreach ($floor[] as $area) {
+            foreach ($area[] as $device) {
+
+            }
+          }
+        }
+      }*/
+    }
   }
 
   public static function getToken() {
