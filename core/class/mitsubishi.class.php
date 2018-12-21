@@ -25,10 +25,10 @@ class mitsubishi extends eqLogic {
     if (config::byKey('token', 'mitsubishi', '') == '') {
       mitsubishi::getToken();
     }
-    mitsubishi::refresh();
+    mitsubishi::refreshAll();
   }
 
-  public static function refresh() {
+  public static function refreshAll() {
     //$json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
     //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
   }
@@ -77,7 +77,7 @@ class mitsubishiCmd extends cmd {
         $option = $this->getConfiguration('option');
       }
       $Eqlogic->SetModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
-      mitsubishi::refresh();
+      mitsubishi::refreshAll();
     }
   }
 
