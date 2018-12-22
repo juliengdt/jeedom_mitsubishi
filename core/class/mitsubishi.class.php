@@ -130,7 +130,7 @@ class mitsubishi extends eqLogic {
         $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAta";
       }
       $headers = array(
-        'X-MitsContextKey: ' . $montoken,
+        'X-MitsContextKey: ' . config::byKey('MyToken', 'melcloud', ''),
         'content-type: application/json'
       );
       $post = json_encode($device);
