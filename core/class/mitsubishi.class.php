@@ -117,7 +117,7 @@ class mitsubishi extends eqLogic {
   }
 
   public function SetModif($_option,$_flag,$_idflag){
-    if (config::byKey('MyToken', 'melcloud', '') != '') {
+    if (config::byKey('token', 'mitsubishi') != '') {
       $device = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $this->getConfiguration('DeviceID') . '&buildingID=' . $this->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
       $device[$_flag] = $_option;
       $device['EffectiveFlags'] = $_idflag;
@@ -129,11 +129,11 @@ class mitsubishi extends eqLogic {
         $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAta";
       }
       $headers = array(
-        'X-MitsContextKey: ' . config::byKey('MyToken', 'melcloud', ''),
+        'X-MitsContextKey: ' . config::byKey('token', 'mitsubishi'),
         'content-type: application/json'
       );
       $post = json_encode($device);
-      $json = mitsubishi::callMelcloud($url,array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),$post);
+      $json = mitsubishi::callMelcloud($url,$headers,$post);
       log::add('mitsubishi', 'debug', 'Result ' . print_r($json, true));
       //set op mode in text format
       if ($_flag == 'OperationMode'){
