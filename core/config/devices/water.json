@@ -42,7 +42,7 @@
       "configuration" : {
         "option" : "slider",
         "flag" : "SetTemperatureZone1",
-        "idflag" : 8589934592,
+        "idflag" : 8589934720,
         "minValue" : 10,
         "maxValue" : 30
       },
@@ -121,7 +121,7 @@
       "configuration" : {
         "option" : "slider",
         "flag" : "SetTemperatureZone2",
-        "idflag" : 34359738880,
+        "idflag" : 34359738368,
         "minValue" : 10,
         "maxValue" : 30
       },
@@ -284,7 +284,7 @@
       }
     },
     {
-      "name": "Forcer ECS",
+      "name": "ECS en mode forcé",
       "type": "action",
       "subtype": "other",
       "display": {
@@ -301,7 +301,7 @@
       "value": "Mode Force ECS"
     },
     {
-      "name": "Enlever Forcer ECS",
+      "name": "ECS en mode auto",
       "type": "action",
       "subtype": "other",
       "display": {
