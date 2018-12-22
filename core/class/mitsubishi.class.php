@@ -163,7 +163,7 @@ class mitsubishi extends eqLogic {
     }
     $this->checkAndUpdateCmd('OperationModeText', $value);
   }
-  public function updateOperationMode($_zone,$_option){
+  public function updateOperationModeZone($_zone,$_option){
     switch ($_option){
       case 0:
       $value = 'Thermostat';
