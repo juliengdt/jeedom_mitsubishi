@@ -34,6 +34,21 @@
       "logicalId": "Off"
     },
     {
+      "name": "Power",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "Power",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
       "name": "Mode Chauffage",
       "type": "action",
       "subtype": "other",
@@ -183,13 +198,28 @@
     {
       "name": "Mode",
       "type": "info",
-      "subtype": "string",
+      "subtype": "numeric",
       "display": {
         "generic_type": "DONT"
       },
       "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "OperationMode",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Texte",
+      "type": "info",
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "OperationModeText",
       "template": {
         "dashboard": "line",
         "mobile": "line"

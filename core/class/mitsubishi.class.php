@@ -28,6 +28,10 @@ class mitsubishi extends eqLogic {
     mitsubishi::refreshAll();
   }
 
+  public static function cronDaily() {
+    mitsubishi::getToken();
+  }
+
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
     //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
@@ -55,6 +59,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
             $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
             $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
+            $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
+            $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
           } else {
             $mitsubishi->loadCmdFromConf('water');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
@@ -105,34 +111,80 @@ class mitsubishi extends eqLogic {
     return json_decode($output, true);
   }
 
-  public function loadCmdFromConf($type) {
-  	if (!is_file(dirname(__FILE__) . '/../config/devices/' . $type . '.json')) {
-  		return;
-  	}
-  	$content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $type . '.json');
-  	if (!is_json($content)) {
-  		return;
-  	}
-  	$device = json_decode($content, true);
-  	if (!is_array($device) || !isset($device['commands'])) {
-  		return true;
-  	}
-  	foreach ($device['commands'] as $command) {
-  		$cmd = null;
-  		foreach ($this->getCmd() as $liste_cmd) {
-  			if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
-  			|| (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
-  				$cmd = $liste_cmd;
-  				break;
-  			}
-  		}
-  		if ($cmd == null || !is_object($cmd)) {
-  			$cmd = new geotravCmd();
-  			$cmd->setEqLogic_id($this->getId());
-  			utils::a2o($cmd, $command);
-  			$cmd->save();
-  		}
-  	}
+  public function SetModif($_option,$_flag,$_idflag){
+    if (config::byKey('MyToken', 'melcloud', '') != '') {
+      $device = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $this->getConfiguration('DeviceID') . '&buildingID=' . $this->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
+      $device[$_flag] = $_option;
+      $device['EffectiveFlags'] = $_idflag;
+      $device['HasPendingCommand'] = 'true';
+      if ($this->getConfiguration('DeviceType') == 1){
+        $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAtw";
+      }else{
+        $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAta";
+      }
+      $headers = array(
+        'X-MitsContextKey: ' . $montoken,
+        'content-type: application/json'
+      );
+      $post = json_encode($device);
+      $device = mitsubishi::callMelcloud($url,$headers,$post);
+      //set op mode in text format
+      if ($_flag == 'OperationMode'){
+        $this->updateOperationMode($_option);
+        $this->checkAndUpdateCmd('OperationMode', $_option);
+      }
+    }
+  }
+
+  public function updateOperationMode($_option){
+    switch ($_option){
+      case 7:
+      $value = 'Ventilation';
+      break;
+      case 1:
+      $value = 'Chauffage';
+      break;
+      case 2:
+      $value = 'Sechage';
+      break;
+      case 3:
+      $value = 'Froid';
+      break;
+      case 8:
+      $value = 'Automatique';
+      break;
+    }
+    $this->checkAndUpdateCmd('OperationModeText', $value);
+  }
+
+  public function loadCmdFromConf($_type) {
+    if (!is_file(dirname(__FILE__) . '/../config/devices/' . $_type . '.json')) {
+      return;
+    }
+    $content = file_get_contents(dirname(__FILE__) . '/../config/devices/' . $_type . '.json');
+    if (!is_json($content)) {
+      return;
+    }
+    $device = json_decode($content, true);
+    if (!is_array($device) || !isset($device['commands'])) {
+      return true;
+    }
+    foreach ($device['commands'] as $command) {
+      $cmd = null;
+      foreach ($this->getCmd() as $liste_cmd) {
+        if ((isset($command['logicalId']) && $liste_cmd->getLogicalId() == $command['logicalId'])
+        || (isset($command['name']) && $liste_cmd->getName() == $command['name'])) {
+          $cmd = $liste_cmd;
+          break;
+        }
+      }
+      if ($cmd == null || !is_object($cmd)) {
+        $cmd = new geotravCmd();
+        $cmd->setEqLogic_id($this->getId());
+        utils::a2o($cmd, $command);
+        $cmd->save();
+      }
+    }
   }
 
 }
