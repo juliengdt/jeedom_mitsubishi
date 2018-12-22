@@ -328,7 +328,7 @@
       "configuration" : {
         "request" : "refresh"
       },
-      "isVisible": 1,
+      "isVisible": 0,
       "logicalId": "refresh"
     }
   ]

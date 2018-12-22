@@ -175,7 +175,7 @@ class mitsubishi extends eqLogic {
       $value = 'Loi Eau';
       break;
     }
-    $this->checkAndUpdateCmd($_zone, $value);
+    $this->checkAndUpdateCmd($_zone . 'Text', $value);
   }
 
 
