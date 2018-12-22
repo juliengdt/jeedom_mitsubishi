@@ -102,22 +102,25 @@ $eqLogics = eqLogic::byType('mitsubishi');
                 <label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
               </div>
             </div>
+
             <div class="form-group">
-              <label class="col-sm-3 control-label" ></label>
+              <label class="col-sm-3 control-label">{{Device ID}}</label>
               <div class="col-sm-8">
-                <input class="eqLogicAttr" data-l1key="configuration" data-l1key="DeviceID" disabled style="margin-bottom : 5px;" />
+                <span class="eqLogicAttr" data-l1key="configuration" data-l2key="DeviceID"></span>
               </div>
             </div>
+
             <div class="form-group">
-              <label class="col-sm-3 control-label" ></label>
+              <label class="col-sm-3 control-label">{{Building ID}}</label>
               <div class="col-sm-8">
-                <input class="eqLogicAttr" data-l1key="configuration" data-l1key="BuildingID" disabled style="margin-bottom : 5px;" />
+                <span class="eqLogicAttr" data-l1key="configuration" data-l2key="BuildingID"></span>
               </div>
             </div>
+
             <div class="form-group">
-              <label class="col-sm-3 control-label" ></label>
+              <label class="col-sm-3 control-label">{{Device Type}}</label>
               <div class="col-sm-8">
-                <input class="eqLogicAttr" data-l1key="configuration" data-l1key="DeviceType" disabled style="margin-bottom : 5px;" />
+                <span class="eqLogicAttr" data-l1key="configuration" data-l2key="DeviceType"></span>
               </div>
             </div>
 
