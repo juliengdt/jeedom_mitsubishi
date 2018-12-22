@@ -65,8 +65,15 @@ class mitsubishi extends eqLogic {
             $mitsubishi->loadCmdFromConf('water');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
+            $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('OperationModeZone1', $device['Device']['OperationModeZone1']);
+            $mitsubishi->checkAndUpdateCmd('OperationModeZone2', $device['Device']['OperationModeZone2']);
+            $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
+            $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
             $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
             $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
             $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
             $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
@@ -156,6 +163,21 @@ class mitsubishi extends eqLogic {
     }
     $this->checkAndUpdateCmd('OperationModeText', $value);
   }
+  public function updateOperationMode($_zone,$_option){
+    switch ($_option){
+      case 0:
+      $value = 'Thermostat';
+      break;
+      case 1:
+      $value = 'Température';
+      break;
+      case 2:
+      $value = 'Loi Eau';
+      break;
+    }
+    $this->checkAndUpdateCmd($_zone, $value);
+  }
+
 
   public function loadCmdFromConf($_type) {
     if (!is_file(dirname(__FILE__) . '/../config/devices/' . $_type . '.json')) {
