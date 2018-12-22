@@ -35,9 +35,7 @@ class mitsubishi extends eqLogic {
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
     //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-    log::add('mitsubishi', 'debug', 'Retrieve ' . config::byKey('token', 'mitsubishi'));
     foreach ($json as $building) {
-      log::add('mitsubishi', 'debug', 'Building ' . $building['ID']);
       foreach ($json as $building) {
         foreach ($building['Structure']['Devices'] as $device) {
           log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
@@ -124,7 +122,7 @@ class mitsubishi extends eqLogic {
       $device[$_flag] = $_option;
       $device['EffectiveFlags'] = $_idflag;
       $device['HasPendingCommand'] = 'true';
-      log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+      log::add('mitsubishi', 'debug', 'Set ' . print_r($device, true));
       if ($this->getConfiguration('DeviceType') == 1){
         $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAtw";
       }else{
