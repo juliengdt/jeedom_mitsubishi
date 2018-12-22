@@ -124,6 +124,7 @@ class mitsubishi extends eqLogic {
       $device[$_flag] = $_option;
       $device['EffectiveFlags'] = $_idflag;
       $device['HasPendingCommand'] = 'true';
+      log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
       if ($this->getConfiguration('DeviceType') == 1){
         $url = "https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/SetAtw";
       }else{
@@ -134,7 +135,8 @@ class mitsubishi extends eqLogic {
         'content-type: application/json'
       );
       $post = json_encode($device);
-      $device = mitsubishi::callMelcloud($url,$headers,$post);
+      $json = mitsubishi::callMelcloud($url,array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),$post);
+      log::add('mitsubishi', 'debug', 'Result ' . print_r($json, true));
       //set op mode in text format
       if ($_flag == 'OperationMode'){
         $this->updateOperationMode($_option);
