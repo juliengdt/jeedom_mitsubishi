@@ -17,7 +17,8 @@
         "maxValue" : 30
       },
       "isVisible": 1,
-      "logicalId": "SetTemperatureZone1"
+      "logicalId": "actionSetTemperatureZone1",
+      "value": "Consigne Zone 1"
     },
     {
       "name": "Température Zone 1",
@@ -95,7 +96,8 @@
         "maxValue" : 30
       },
       "isVisible": 1,
-      "logicalId": "SetTemperatureZone2"
+      "logicalId": "actionSetTemperatureZone2",
+      "value": "Consigne Zone 2"
     },
     {
       "name": "Température Zone 2",
