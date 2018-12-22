@@ -2,25 +2,6 @@
   "name": "water",
   "commands": [
     {
-      "name": "Set Consigne Zone 1",
-      "type": "action",
-      "subtype": "slider",
-      "display": {
-        "generic_type": "DONT",
-        "forceReturnLineBefore": 1
-      },
-      "configuration" : {
-        "option" : "slider",
-        "flag" : "SetTemperatureZone1",
-        "idflag" : 8589934592,
-        "minValue" : 10,
-        "maxValue" : 30
-      },
-      "isVisible": 1,
-      "logicalId": "actionSetTemperatureZone1",
-      "value": "Consigne Zone 1"
-    },
-    {
       "name": "Température Zone 1",
       "type": "info",
       "subtype": "numeric",
@@ -49,6 +30,25 @@
         "dashboard": "line",
         "mobile": "line"
       }
+    },
+    {
+      "name": "Set Consigne Zone 1",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetTemperatureZone1",
+        "idflag" : 8589934592,
+        "minValue" : 10,
+        "maxValue" : 30
+      },
+      "isVisible": 1,
+      "logicalId": "actionSetTemperatureZone1",
+      "value": "Consigne Zone 1"
     },
     {
       "name": "Mode Zone 1",
@@ -81,25 +81,6 @@
       }
     },
     {
-      "name": "Set Consigne Zone 2",
-      "type": "action",
-      "subtype": "slider",
-      "display": {
-        "generic_type": "DONT",
-        "forceReturnLineBefore": 1
-      },
-      "configuration" : {
-        "option" : "slider",
-        "flag" : "SetTemperatureZone2",
-        "idflag" : 34359738880,
-        "minValue" : 10,
-        "maxValue" : 30
-      },
-      "isVisible": 1,
-      "logicalId": "actionSetTemperatureZone2",
-      "value": "Consigne Zone 2"
-    },
-    {
       "name": "Température Zone 2",
       "type": "info",
       "subtype": "numeric",
@@ -128,6 +109,25 @@
         "dashboard": "line",
         "mobile": "line"
       }
+    },
+    {
+      "name": "Set Consigne Zone 2",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetTemperatureZone2",
+        "idflag" : 34359738880,
+        "minValue" : 10,
+        "maxValue" : 30
+      },
+      "isVisible": 1,
+      "logicalId": "actionSetTemperatureZone2",
+      "value": "Consigne Zone 2"
     },
     {
       "name": "Mode Zone 2",
@@ -205,6 +205,21 @@
       }
     },
     {
+      "name": "Power",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "Power",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
       "name": "Allumer",
       "type": "action",
       "subtype": "other",
@@ -218,7 +233,8 @@
         "idflag" : 1
       },
       "isVisible": 1,
-      "logicalId": "On"
+      "logicalId": "On",
+      "value": "Power"
     },
     {
       "name": "Eteindre",
@@ -234,22 +250,8 @@
         "idflag" : 1
       },
       "isVisible": 1,
-      "logicalId": "Off"
-    },
-    {
-      "name": "Power",
-      "type": "info",
-      "subtype": "binary",
-      "display": {
-        "generic_type": "DONT"
-      },
-      "isVisible": 1,
-      "isHistorized": 0,
-      "logicalId": "Power",
-      "template": {
-        "dashboard": "line",
-        "mobile": "line"
-      }
+      "logicalId": "Off",
+      "value": "Power"
     },
     {
       "name": "Mode Eco ECS",
@@ -295,7 +297,8 @@
         "idflag" : 65536
       },
       "isVisible": 1,
-      "logicalId": "On"
+      "logicalId": "OnECS",
+      "value": "Mode Force ECS"
     },
     {
       "name": "Enlever Forcer ECS",
@@ -311,7 +314,8 @@
         "idflag" : 65536
       },
       "isVisible": 1,
-      "logicalId": "Off"
+      "logicalId": "OffECS",
+      "value": "Mode Force ECS"
     },
     {
       "name": "Rafraichir",
