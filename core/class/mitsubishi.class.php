@@ -41,29 +41,29 @@ class mitsubishi extends eqLogic {
           if (!is_object($mitsubishi)) {
             $mitsubishi = new mitsubishi();
             $mitsubishi->setEqType_name('mitsubishi');
-            $mitsubishi->setLogicalId($building['ID'] . $device['ID']);
+            $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID']);
             $mitsubishi->setIsEnable(1);
             $mitsubishi->setIsVisible(1);
             $mitsubishi->setName($device['DeviceName']);
             $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-            $mitsubishi->setConfiguration('BuildingID', $building['BuildingID']);
-            $mitsubishi->setConfiguration('DeviceType', $building['Device']['DeviceType']);//0 air/air, 1 air/water
+            $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+            $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
             $mitsubishi->save();
           }
-          if ($building['Device']['DeviceType'] == 0) {
+          if ($device['Device']['DeviceType'] == 0) {
             $mitsubishi->loadCmdFromConf('air');
-            $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $building['Device']['ActualFanSpeed']);
-            $mitsubishi->checkAndUpdateCmd('RoomTemperature', $building['Device']['RoomTemperature']);
-            $mitsubishi->checkAndUpdateCmd('OperationMode', $building['Device']['OperationMode']);
+            $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
+            $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
+            $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
           } else {
             $mitsubishi->loadCmdFromConf('water');
-            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $building['Device']['RoomTemperatureZone1']);
-            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $building['Device']['RoomTemperatureZone2']);
-            $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $building['Device']['OutdoorTemperature']);
-            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $building['Device']['TankWaterTemperature']);
-            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $building['Device']['ForcedHotWaterMode']);
-            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $building['Device']['EcoHotWater']);
-            $mitsubishi->checkAndUpdateCmd('Power', $building['Device']['Power']);
+            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
+            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
+            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
+            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
+            $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
           }
 
         }
