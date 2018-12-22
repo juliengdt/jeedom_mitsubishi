@@ -220,6 +220,7 @@ class mitsubishiCmd extends cmd {
       } else {
         $option = $this->getConfiguration('option');
       }
+      log::add('mitsubishi', 'debug', 'Action ' . $option . ' ' . $this->getConfiguration('flag') . ' ' . $this->getConfiguration('idflag'));
       $Eqlogic->SetModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
       mitsubishi::refreshAll();
     }
