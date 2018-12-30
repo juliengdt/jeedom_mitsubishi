@@ -2,7 +2,7 @@
   "name": "water",
   "commands": [
     {
-      "name": "Température Zone 1",
+      "name": "Température",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -17,7 +17,7 @@
       }
     },
     {
-      "name": "Consigne Zone 1",
+      "name": "Consigne",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -32,7 +32,7 @@
       }
     },
     {
-      "name": "Set Consigne Zone 1",
+      "name": "Définir Consigne",
       "type": "action",
       "subtype": "slider",
       "display": {
@@ -48,10 +48,26 @@
       },
       "isVisible": 1,
       "logicalId": "actionSetTemperatureZone1",
-      "value": "Consigne Zone 1"
+      "value": "Consigne"
     },
     {
-      "name": "Mode Zone 1",
+      "name": "Consigne Mode Température Eau",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "SetHeatFlowTemperatureZone1",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -66,7 +82,7 @@
       }
     },
     {
-      "name": "Mode Zone 1 Texte",
+      "name": "Mode Texte",
       "type": "info",
       "subtype": "string",
       "display": {
@@ -75,7 +91,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "OperationModeZone1Text",
+      "logicalId": "OperationModeTextZone1",
       "template": {
         "dashboard": "line",
         "mobile": "line"

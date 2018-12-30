@@ -25,14 +25,14 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "SetTankWaterTemperature",
+      "logicalId": "TankWaterTemperature",
       "template": {
         "dashboard": "line",
         "mobile": "line"
       }
     },
     {
-      "name": "Mode Eco ECS",
+      "name": "Statut Mode Eco ECS",
       "type": "info",
       "subtype": "binary",
       "display": {
@@ -47,7 +47,7 @@
       }
     },
     {
-      "name": "Mode Force ECS",
+      "name": "Statut du mode forcé ECS",
       "type": "info",
       "subtype": "binary",
       "display": {
@@ -63,7 +63,7 @@
       }
     },
     {
-      "name": "ECS en mode forcé",
+      "name": "Passer ECS en mode forcé",
       "type": "action",
       "subtype": "other",
       "display": {
@@ -80,7 +80,7 @@
       "value": "Mode Force ECS"
     },
     {
-      "name": "ECS en mode auto",
+      "name": "Passer ECS en mode auto",
       "type": "action",
       "subtype": "other",
       "display": {
