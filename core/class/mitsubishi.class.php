@@ -59,8 +59,6 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
             $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
-            $mitsubishi->updateOperationModeZone('HolidayMode',$device['Device']['HolidayMode']);
-            $mitsubishi->updateOperationModeZone('Offline',!$device['Device']['Offline']);
           } else {
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
             if (!is_object($mitsubishi)) {
@@ -78,6 +76,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->loadCmdFromConf('water');
             $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
+            $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
+            $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -93,6 +93,7 @@ class mitsubishi extends eqLogic {
             }
             $mitsubishi->loadCmdFromConf('waterECS');
             $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
             $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
             $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1', 'mitsubishi');

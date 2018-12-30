@@ -25,7 +25,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "TankWaterTemperature",
+      "logicalId": "SetTankWaterTemperature",
       "template": {
         "dashboard": "line",
         "mobile": "line"
