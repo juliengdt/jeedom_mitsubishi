@@ -67,6 +67,20 @@
       "value": "Power"
     },
     {
+      "name": "Mode Vacances",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      },
+      "isVisible": 0,
+      "logicalId": "HolidayMode"
+    },
+    {
       "name": "Rafraichir",
       "type": "action",
       "subtype": "other",

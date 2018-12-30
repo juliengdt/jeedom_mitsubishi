@@ -96,6 +96,21 @@
         "dashboard": "line",
         "mobile": "line"
       }
-    }
+    },
+      {
+        "name": "En pause",
+        "type": "info",
+        "subtype": "binary",
+        "display": {
+          "generic_type": "DONT",
+          "forceReturnLineBefore": 1
+        },
+        "template": {
+          "dashboard": "line",
+          "mobile": "line"
+        },
+        "isVisible": 1,
+        "logicalId": "IdleZone2"
+      }
   ]
 }
