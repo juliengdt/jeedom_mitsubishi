@@ -8,7 +8,7 @@
       "display": {
         "generic_type": "DONT"
       },
-      "isVisible": 0,
+      "isVisible": 1,
       "isHistorized": 0,
       "logicalId": "TankWaterTemperature",
       "template": {
@@ -29,8 +29,7 @@
       "template": {
         "dashboard": "line",
         "mobile": "line"
-      },
-      "value": "Température ECS"
+      }
     },
     {
       "name": "Mode Eco ECS",
