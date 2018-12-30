@@ -59,6 +59,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
             $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
+            $mitsubishi->updateOperationModeZone('HolidayMode',$device['Device']['HolidayMode']);
+            $mitsubishi->updateOperationModeZone('Offline',!$device['Device']['Offline']);
           } else {
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
             if (!is_object($mitsubishi)) {
@@ -111,7 +113,7 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('OperationModeZone1', $device['Device']['OperationModeZone1']);
             $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
-
+            $mitsubishi->updateOperationModeZone('IdleZone1',$device['Device']['IdleZone1']);
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -130,6 +132,7 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('OperationModeZone2', $device['Device']['OperationModeZone2']);
             $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
+            $mitsubishi->updateOperationModeZone('IdleZone2',$device['Device']['IdleZone2']);
           }
 
         }
