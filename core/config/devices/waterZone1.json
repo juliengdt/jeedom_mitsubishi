@@ -91,7 +91,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
-      "logicalId": "OperationModeTextZone1",
+      "logicalId": "OperationModeZone1Text",
       "template": {
         "dashboard": "line",
         "mobile": "line"
