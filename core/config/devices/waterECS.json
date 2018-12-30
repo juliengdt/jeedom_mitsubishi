@@ -1,0 +1,101 @@
+{
+  "name": "water",
+  "commands": [
+    {
+      "name": "Température ECS",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "TankWaterTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Consigne ECS",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "SetTankWaterTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      },
+      "value": "Température ECS"
+    },
+    {
+      "name": "Mode Eco ECS",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "EcoHotWater",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Force ECS",
+      "type": "info",
+      "subtype": "binary",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "ForcedHotWaterMode",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "ECS en mode forcé",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fa fa-lightbulb-o\"><\/i>",
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "option" : "true",
+        "flag" : "ForcedHotWaterMode",
+        "idflag" : 65536
+      },
+      "isVisible": 1,
+      "logicalId": "OnECS",
+      "value": "Mode Force ECS"
+    },
+    {
+      "name": "ECS en mode auto",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "icon": "<i class=\"fa fa-power-off\"><\/i>",
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "option" : "false",
+        "flag" : "ForcedHotWaterMode",
+        "idflag" : 65536
+      },
+      "isVisible": 1,
+      "logicalId": "OffECS",
+      "value": "Mode Force ECS"
+    }
+  ]
+}

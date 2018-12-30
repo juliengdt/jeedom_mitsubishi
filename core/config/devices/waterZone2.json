@@ -1,0 +1,85 @@
+{
+  "name": "water",
+  "commands": [
+    {
+      "name": "Température Zone 2",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "RoomTemperatureZone2",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Consigne Zone 2",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "SetTemperatureZone2",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Set Consigne Zone 2",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetTemperatureZone2",
+        "idflag" : 34359738368,
+        "minValue" : 10,
+        "maxValue" : 30
+      },
+      "isVisible": 1,
+      "logicalId": "actionSetTemperatureZone2",
+      "value": "Consigne Zone 2"
+    },
+    {
+      "name": "Mode Zone 2",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "OperationModeZone2",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Zone 2 Texte",
+      "type": "info",
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "OperationModeZone2Text",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    }
+  ]
+}
