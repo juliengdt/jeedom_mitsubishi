@@ -41,3 +41,28 @@ if (!isConnect()) {
     </div>
   </fieldset>
 </form>
+
+<script>
+
+    function loxone_postSaveConfiguration(){
+      $.ajax({// fonction permettant de faire de l'ajax
+      type: "POST", // methode de transmission des données au fichier php
+      url: "plugins/mitsubishi/core/ajax/mitsubishi.ajax.php", // url du fichier php
+      data: {
+        action: "postSave",
+      },
+      dataType: 'json',
+      error: function (request, status, error) {
+        handleAjaxError(request, status, error);
+      },
+      success: function (data) { // si l'appel a bien fonctionné
+      if (data.state != 'ok') {
+        $('#div_alert').showAlert({message: data.result, level: 'danger'});
+        return;
+      }
+    }
+  });
+}
+
+</script>
+
