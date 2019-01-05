@@ -67,6 +67,25 @@
       }
     },
     {
+      "name": "Définir Consigne Mode Température Eau",
+      "type": "action",
+      "subtype": "slider",
+      "display": {
+        "generic_type": "DONT",
+        "forceReturnLineBefore": 1
+      },
+      "configuration" : {
+        "option" : "slider",
+        "flag" : "SetHeatFlowTemperatureZone1",
+        "idflag" : 281474976710688,
+        "minValue" : 30,
+        "maxValue" : 55
+      },
+      "isVisible": 1,
+      "logicalId": "actionSetTemperatureZone1",
+      "value": "Consigne"
+    },
+    {
       "name": "Mode",
       "type": "info",
       "subtype": "numeric",
