@@ -5,6 +5,8 @@
     "author": "lunarok",
     "require": "3.0",
     "category": "wellness",
+    "display" : "panel",
+  	"mobile" : "panel",
     "language" : ["fr_FR","en_US"],
   	"compatibility" : ["miniplus","smart","rpi","docker","diy"],
   	"changelog" : "https://lunarok.github.io/jeedom_docs/plugins/mitsubishi/changelog.html",
