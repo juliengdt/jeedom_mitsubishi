@@ -30,7 +30,7 @@ try {
     ajax::success();
   }
 
-  if (init('action') == 'getmitsubishi') {
+  if (init('action') == 'getMitsubishi') {
     $return = array();
     foreach (eqLogic::byType('mitsubishi') as $eqLogic) {
       $return[] = $eqLogic->toHtml(init('version'));
