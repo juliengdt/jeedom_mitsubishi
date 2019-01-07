@@ -6,7 +6,7 @@ if (!isConnect()) {
 
 <div class="row">
 
-  echo '<div class="col-md-6">';
+  <div class="col-md-6">
     <div class="div_displayEquipement">
       <?php
       foreach (eqLogic::byType('mitsubishi') as $eqLogic) {
