@@ -30,6 +30,12 @@ class mitsubishi extends eqLogic {
 
   public static function cronDaily() {
     mitsubishi::getToken();
+    $eqLogics = eqLogic::byType('mitsubishi', true);
+    foreach ($eqLogics as $eqLogic) {
+			if ($eqLogic->getConfiguration('SubType') == 'water') {
+        $eqLogic->getConso();
+      }
+		}
   }
 
   public static function refreshAll() {
@@ -51,6 +57,7 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
               $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
               $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'air');
               $mitsubishi->save();
             }
             $mitsubishi->loadCmdFromConf('air');
@@ -71,8 +78,11 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
               $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
               $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'water');
               $mitsubishi->save();
             }
+            $mitsubishi->setConfiguration('SubType', 'water');
+            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('water');
             $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
@@ -89,8 +99,11 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
               $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
               $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'waterECS');
               $mitsubishi->save();
             }
+            $mitsubishi->setConfiguration('SubType', 'waterECS');
+            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterECS');
             $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
             $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
@@ -107,8 +120,11 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
               $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
               $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'waterZone1');
               $mitsubishi->save();
             }
+            $mitsubishi->setConfiguration('SubType', 'waterZone1');
+            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterZone1');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
@@ -127,8 +143,11 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
               $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
               $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'waterZone2');
               $mitsubishi->save();
             }
+            $mitsubishi->setConfiguration('SubType', 'waterZone2');
+            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterZone2');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
@@ -140,6 +159,22 @@ class mitsubishi extends eqLogic {
 
         }
       }
+    }
+  }
+
+  public static function getConso() {
+    if (config::byKey('password', 'mitsubishi') != '' && config::byKey('mail', 'mitsubishi') != '') {
+      $data["DeviceId"]=$this->getConfiguration('DeviceID');
+      $data["FromDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
+      $data["ToDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
+      $data["UseCurrency"]=false;
+      $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),$data);
+      log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+      $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
+      $this->checkAndUpdateCmd('Heating', $json['Heating'][0]);
+      $this->checkAndUpdateCmd('ProducedHotWater', $json['ProducedHotWater'][0]);
+      $this->checkAndUpdateCmd('ProducedHeating', $json['ProducedHeating'][0]);
+      $this->checkAndUpdateCmd('CoP', $json['CoP'][0]);
     }
   }
 
