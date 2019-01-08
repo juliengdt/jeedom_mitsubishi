@@ -28,11 +28,11 @@ class mitsubishi extends eqLogic {
     mitsubishi::refreshAll();
   }
 
-  public static function cronDaily() {
+  public static function cronHourly() {
     mitsubishi::getToken();
     $eqLogics = eqLogic::byType('mitsubishi', true);
     foreach ($eqLogics as $eqLogic) {
-			if ($eqLogic->getConfiguration('SubType') == 'water') {
+			if ($eqLogic->getConfiguration('subType') == 'water') {
         $eqLogic->getConso();
       }
 		}
