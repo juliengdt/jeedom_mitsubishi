@@ -162,8 +162,7 @@ class mitsubishi extends eqLogic {
     }
   }
 
-  public static function getConso() {
-    if (config::byKey('password', 'mitsubishi') != '' && config::byKey('mail', 'mitsubishi') != '') {
+  public function getConso() {
       $data["DeviceId"]=$this->getConfiguration('DeviceID');
       $data["FromDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
       $data["ToDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
@@ -175,7 +174,6 @@ class mitsubishi extends eqLogic {
       $this->checkAndUpdateCmd('ProducedHotWater', $json['ProducedHotWater'][0]);
       $this->checkAndUpdateCmd('ProducedHeating', $json['ProducedHeating'][0]);
       $this->checkAndUpdateCmd('CoP', $json['CoP'][0]);
-    }
   }
 
   public static function getToken() {
