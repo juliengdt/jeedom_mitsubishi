@@ -182,6 +182,7 @@ class mitsubishi extends eqLogic {
     $headers[] = 'X-Mitscontextkey: ' . config::byKey('token', 'mitsubishi');
     $post="{\"DeviceId\":" . $this->getConfiguration('DeviceID') . ",\"FromDate\":\"" . date('Y-m-dTG:00:00', strtotime("1 day ago" )) . "\",\"ToDate\":\"" . date('Y-m-dTG:00:00') . "\",\"Duration\":1}";
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Report/GetOperationModeLog2',$headers,$post);
+    log::add('mitsubishi', 'debug', 'Retrieve ' . $post);
     log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
     foreach ($json as $array) {
       $value = floatval($array['Value'])*100;
