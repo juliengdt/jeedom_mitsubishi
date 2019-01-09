@@ -162,7 +162,7 @@
       }
     },
     {
-      "name": "Mode Arrêt sur la dernière journée",
+      "name": "Mode Arrêt sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -178,7 +178,7 @@
       }
     },
     {
-      "name": "Mode Eau Chaude sur la dernière journée",
+      "name": "Mode Eau Chaude sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -194,7 +194,7 @@
       }
     },
     {
-      "name": "Mode Chauffage sur la dernière journée",
+      "name": "Mode Chauffage sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -210,7 +210,7 @@
       }
     },
     {
-      "name": "Mode Choc Thermique sur la dernière journée",
+      "name": "Mode Choc Thermique sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -226,7 +226,7 @@
       }
     },
     {
-      "name": "Eteint sur la dernière journée",
+      "name": "Eteint sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
