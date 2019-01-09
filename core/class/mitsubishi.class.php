@@ -173,6 +173,8 @@ class mitsubishi extends eqLogic {
         'Content-Type: application/json; charset=utf-8',
         'X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')
       );
+      log::add('mitsubishi', 'debug', 'Conso ' . print_r($data, true));
+      log::add('mitsubishi', 'debug', 'Conso2 ' . print_r($headers, true));
       $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',$headers,$post);
       log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
       $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
