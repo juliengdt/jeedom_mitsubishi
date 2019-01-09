@@ -30,6 +30,7 @@ class mitsubishi extends eqLogic {
     foreach ($eqLogics as $eqLogic) {
       if ($eqLogic->getConfiguration('SubType') == 'water') {
         $eqLogic->getConso();
+        $eqLogic->getMode();
       }
     }
   }
@@ -40,6 +41,7 @@ class mitsubishi extends eqLogic {
     foreach ($eqLogics as $eqLogic) {
       if ($eqLogic->getConfiguration('SubType') == 'water') {
         $eqLogic->getConso();
+        $eqLogic->getMode();
       }
     }
   }
