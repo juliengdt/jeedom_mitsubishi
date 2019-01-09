@@ -163,11 +163,17 @@ class mitsubishi extends eqLogic {
   }
 
   public function getConso() {
+      $data = array();
       $data["DeviceId"]=$this->getConfiguration('DeviceID');
       $data["FromDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
       $data["ToDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
       $data["UseCurrency"]=false;
-      $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),$data);
+      $post=json_encode($data);
+      $headers = array(
+        'Content-Type: application/json; charset=utf-8',
+        'X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')
+      );
+      $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',$headers,$post);
       log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
       $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
       $this->checkAndUpdateCmd('Heating', $json['Heating'][0]);
@@ -210,7 +216,7 @@ class mitsubishi extends eqLogic {
     return json_decode($output, true);
   }
 
-  public function SetModif($_option,$_flag,$_idflag){
+  public function setModif($_option,$_flag,$_idflag){
     if (config::byKey('token', 'mitsubishi') != '') {
       $device = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $this->getConfiguration('DeviceID') . '&buildingID=' . $this->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
       $device[$_flag] = $_option;
@@ -315,7 +321,7 @@ class mitsubishiCmd extends cmd {
         $option = $this->getConfiguration('option');
       }
       log::add('mitsubishi', 'debug', 'Action ' . $option . ' ' . $this->getConfiguration('flag') . ' ' . $this->getConfiguration('idflag'));
-      $Eqlogic->SetModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
+      $Eqlogic->setModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
       mitsubishi::refreshAll();
     }
   }
