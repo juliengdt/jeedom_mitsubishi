@@ -97,7 +97,7 @@
       "logicalId": "notOffline"
     },
     {
-      "name": "Conso Eau Chaude",
+      "name": "Conso Eau Chaude sur la dernière journée",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -105,6 +105,7 @@
       },
       "isVisible": 1,
       "isHistorized": 1,
+      "unite": "kWh",
       "logicalId": "HotWater",
       "template": {
         "dashboard": "line",
@@ -112,7 +113,7 @@
       }
     },
     {
-      "name": "Eau Chaude Produite",
+      "name": "Eau Chaude Produite sur la dernière journée",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -120,6 +121,7 @@
       },
       "isVisible": 1,
       "isHistorized": 1,
+      "unite": "kWh",
       "logicalId": "ProducedHotWater",
       "template": {
         "dashboard": "line",
@@ -127,7 +129,7 @@
       }
     },
     {
-      "name": "Conso Chauffage",
+      "name": "Conso Chauffage sur la dernière journée",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -135,6 +137,7 @@
       },
       "isVisible": 1,
       "isHistorized": 1,
+      "unite": "kWh",
       "logicalId": "Heating",
       "template": {
         "dashboard": "line",
@@ -142,7 +145,7 @@
       }
     },
     {
-      "name": "Chauffage Produit",
+      "name": "Chauffage Produit sur la dernière journée",
       "type": "info",
       "subtype": "numeric",
       "display": {
@@ -150,6 +153,7 @@
       },
       "isVisible": 1,
       "isHistorized": 1,
+      "unite": "kWh",
       "logicalId": "ProducedHeating",
       "template": {
         "dashboard": "line",
@@ -157,7 +161,87 @@
       }
     },
     {
-      "name": "CoP",
+      "name": "Mode Arrêt sur la dernière journée",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "%",
+      "logicalId": "ModeStop",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Eau Chaude sur la dernière journée",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "%",
+      "logicalId": "ModeHotWater",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Chauffage sur la dernière journée",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "%",
+      "logicalId": "ModeHeating",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Choc Thermique sur la dernière journée",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "%",
+      "logicalId": "ModeLegionellaPrevention",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Eteint sur la dernière journée",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 1,
+      "unite": "%",
+      "logicalId": "ModePowerOff",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "CoP sur la dernière journée",
       "type": "info",
       "subtype": "numeric",
       "display": {
