@@ -26,16 +26,22 @@ class mitsubishi extends eqLogic {
       mitsubishi::getToken();
     }
     mitsubishi::refreshAll();
+    $eqLogics = eqLogic::byType('mitsubishi', true);
+    foreach ($eqLogics as $eqLogic) {
+      if ($eqLogic->getConfiguration('subType') == 'water') {
+        $eqLogic->getConso();
+      }
+    }
   }
 
-  public static function cronHourly() {
+  public static function cronDaily() {
     mitsubishi::getToken();
     $eqLogics = eqLogic::byType('mitsubishi', true);
     foreach ($eqLogics as $eqLogic) {
-			if ($eqLogic->getConfiguration('subType') == 'water') {
+      if ($eqLogic->getConfiguration('subType') == 'water') {
         $eqLogic->getConso();
       }
-		}
+    }
   }
 
   public static function refreshAll() {
@@ -163,25 +169,19 @@ class mitsubishi extends eqLogic {
   }
 
   public function getConso() {
-      $data = array();
-      $data["DeviceId"]=$this->getConfiguration('DeviceID');
-      $data["FromDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
-      $data["ToDate"]=date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00";
-      $data["UseCurrency"]=false;
-      $post=json_encode($data);
-      $headers = array(
-        'Content-Type: application/json; charset=utf-8',
-        'X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')
-      );
-      log::add('mitsubishi', 'debug', 'Conso ' . print_r($data, true));
-      log::add('mitsubishi', 'debug', 'Conso2 ' . print_r($headers, true));
-      $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',$headers,$post);
-      log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-      $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
-      $this->checkAndUpdateCmd('Heating', $json['Heating'][0]);
-      $this->checkAndUpdateCmd('ProducedHotWater', $json['ProducedHotWater'][0]);
-      $this->checkAndUpdateCmd('ProducedHeating', $json['ProducedHeating'][0]);
-      $this->checkAndUpdateCmd('CoP', $json['CoP'][0]);
+    $headers = array();
+    $headers[] = 'Content-Type: application/json; charset=utf-8';
+    $headers[] = 'X-Mitscontextkey: ' . config::byKey('token', 'mitsubishi');
+    $post="{\"DeviceId\":" . $this->getConfiguration('DeviceID') . ",\"FromDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"ToDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"UseCurrency\":false}";
+    log::add('mitsubishi', 'debug', 'Conso ' . print_r($data, true));
+    log::add('mitsubishi', 'debug', 'Conso2 ' . print_r($headers, true));
+    $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',$headers,$post);
+    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+    $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
+    $this->checkAndUpdateCmd('Heating', $json['Heating'][0]);
+    $this->checkAndUpdateCmd('ProducedHotWater', $json['ProducedHotWater'][0]);
+    $this->checkAndUpdateCmd('ProducedHeating', $json['ProducedHeating'][0]);
+    $this->checkAndUpdateCmd('CoP', $json['CoP'][0]);
   }
 
   public static function getToken() {
