@@ -183,9 +183,9 @@ class mitsubishi extends eqLogic {
     $post="{\"DeviceId\":" . $this->getConfiguration('DeviceID') . ",\"FromDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"ToDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"Duration\":1}";
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Report/GetOperationModeLog2',$headers,$post);
     log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-    foreach ($json as $key => $value) {
-      $value = floatval($value)*100;
-      switch ($key) {
+    foreach ($json as $array) {
+      $value = floatval($array['Value'])*100;
+      switch ($array['Key']) {
         case 'Stop':
           $this->checkAndUpdateCmd('ModeStop', $value);
           break;
