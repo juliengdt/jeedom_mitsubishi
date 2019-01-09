@@ -28,7 +28,7 @@ class mitsubishi extends eqLogic {
     mitsubishi::refreshAll();
     $eqLogics = eqLogic::byType('mitsubishi', true);
     foreach ($eqLogics as $eqLogic) {
-      if ($eqLogic->getConfiguration('subType') == 'water') {
+      if ($eqLogic->getConfiguration('SubType') == 'water') {
         $eqLogic->getConso();
       }
     }
@@ -38,7 +38,7 @@ class mitsubishi extends eqLogic {
     mitsubishi::getToken();
     $eqLogics = eqLogic::byType('mitsubishi', true);
     foreach ($eqLogics as $eqLogic) {
-      if ($eqLogic->getConfiguration('subType') == 'water') {
+      if ($eqLogic->getConfiguration('SubType') == 'water') {
         $eqLogic->getConso();
       }
     }
@@ -87,8 +87,6 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('SubType', 'water');
               $mitsubishi->save();
             }
-            $mitsubishi->setConfiguration('SubType', 'water');
-            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('water');
             $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
@@ -108,8 +106,6 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('SubType', 'waterECS');
               $mitsubishi->save();
             }
-            $mitsubishi->setConfiguration('SubType', 'waterECS');
-            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterECS');
             $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
             $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
@@ -129,8 +125,6 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('SubType', 'waterZone1');
               $mitsubishi->save();
             }
-            $mitsubishi->setConfiguration('SubType', 'waterZone1');
-            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterZone1');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
@@ -152,8 +146,6 @@ class mitsubishi extends eqLogic {
               $mitsubishi->setConfiguration('SubType', 'waterZone2');
               $mitsubishi->save();
             }
-            $mitsubishi->setConfiguration('SubType', 'waterZone2');
-            $mitsubishi->save();
             $mitsubishi->loadCmdFromConf('waterZone2');
             $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
