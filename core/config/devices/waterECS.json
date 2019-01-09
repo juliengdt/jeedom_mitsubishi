@@ -10,6 +10,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
+      "unite": "°C",
       "logicalId": "TankWaterTemperature",
       "template": {
         "dashboard": "line",
@@ -25,6 +26,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
+      "unite": "°C",
       "logicalId": "SetTankWaterTemperature",
       "template": {
         "dashboard": "line",
@@ -47,7 +49,7 @@
       }
     },
     {
-      "name": "Statut du mode forcé ECS",
+      "name": "Mode forcé ECS en cours",
       "type": "info",
       "subtype": "binary",
       "display": {

@@ -294,7 +294,7 @@ class mitsubishi extends eqLogic {
       $value = 'Thermostat';
       break;
       case 1:
-      $value = 'Température';
+      $value = 'Température Eau';
       break;
       case 2:
       $value = 'Loi Eau';

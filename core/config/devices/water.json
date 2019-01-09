@@ -10,6 +10,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
+      "unite": "°C",
       "logicalId": "OutdoorTemperature",
       "template": {
         "dashboard": "line",
