@@ -87,9 +87,11 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
             $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
             $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
-            if (isset($device['Device']['ErrorMessage'])) {
-              $mitsubishi->checkAndUpdateCmd('ErrorMessage',!$device['Device']['ErrorMessage']);
-              $mitsubishi->checkAndUpdateCmd('ErrorCode',!$device['Device']['ErrorCode']);
+            if ($device['Device']['HasError']) {
+              $device2 = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $mitsubishi->getConfiguration('DeviceID') . '&buildingID=' . $mitsubishi->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
+              $mitsubishi->checkAndUpdateCmd('ErrorMessage',$device2['ErrorMessage']);
+              $mitsubishi->checkAndUpdateCmd('ErrorCode',$device2['ErrorCode']);
+              log::add('mitsubishi', 'error', 'Erreur ' . $device2['ErrorCode'] . ' ' . $device2['ErrorMessage'] . ' sur ' . $mitsubishi->getConfiguration('DeviceID'));
             }
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
             if (!is_object($mitsubishi)) {
