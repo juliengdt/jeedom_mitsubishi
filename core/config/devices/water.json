@@ -257,6 +257,36 @@
       }
     },
     {
+      "name": "Erreur Présente",
+      "type": "info",
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "ErrorMessage",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Code Erreur",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "logicalId": "ErrorCode",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
       "name": "Rafraichir",
       "type": "action",
       "subtype": "other",
