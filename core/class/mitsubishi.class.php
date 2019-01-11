@@ -87,6 +87,10 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
             $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
             $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
+            if (isset($device['Device']['ErrorMessage'])) {
+              $mitsubishi->checkAndUpdateCmd('ErrorMessage',!$device['Device']['ErrorMessage']);
+              $mitsubishi->checkAndUpdateCmd('ErrorCode',!$device['Device']['ErrorCode']);
+            }
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
