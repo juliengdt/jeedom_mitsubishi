@@ -287,6 +287,38 @@
       }
     },
     {
+      "name": "Température circuit",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "logicalId": "FlowTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Température retour circuit",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "logicalId": "ReturnTemperature",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
       "name": "Rafraichir",
       "type": "action",
       "subtype": "other",

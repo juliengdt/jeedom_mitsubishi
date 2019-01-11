@@ -87,11 +87,16 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
             $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
             $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
+            $mitsubishi->checkAndUpdateCmd('FlowTemperature',$device['Device']['FlowTemperature']);
+            $mitsubishi->checkAndUpdateCmd('ReturnTemperature',$device['Device']['ReturnTemperature']);
             if ($device['Device']['HasError']) {
               $device2 = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $mitsubishi->getConfiguration('DeviceID') . '&buildingID=' . $mitsubishi->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
               $mitsubishi->checkAndUpdateCmd('ErrorMessage',$device2['ErrorMessage']);
               $mitsubishi->checkAndUpdateCmd('ErrorCode',$device2['ErrorCode']);
               log::add('mitsubishi', 'error', 'Erreur ' . $device2['ErrorCode'] . ' ' . $device2['ErrorMessage'] . ' sur ' . $mitsubishi->getConfiguration('DeviceID'));
+            } else {
+              $mitsubishi->checkAndUpdateCmd('ErrorMessage','aucun');
+              $mitsubishi->checkAndUpdateCmd('ErrorCode',0);
             }
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
             if (!is_object($mitsubishi)) {
@@ -112,6 +117,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
             $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
             $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
+            $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
+            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -133,6 +140,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
             $mitsubishi->checkAndUpdateCmd('IdleZone1',$device['Device']['IdleZone1']);
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone1',$device['Device']['SetHeatFlowTemperatureZone1']);
+            $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone1',$device['Device']['FlowTemperatureZone1']);
+            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone1',$device['Device']['ReturnTemperatureZone1']);
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -154,6 +163,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
             $mitsubishi->checkAndUpdateCmd('IdleZone2',$device['Device']['IdleZone2']);
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone2',$device['Device']['SetHeatFlowTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone2',$device['Device']['FlowTemperatureZone2']);
+            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone2',$device['Device']['ReturnTemperatureZone2']);
           }
 
         }

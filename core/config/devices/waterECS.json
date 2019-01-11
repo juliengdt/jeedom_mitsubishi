@@ -97,6 +97,38 @@
       "isVisible": 1,
       "logicalId": "OffECS",
       "value": "Mode Force ECS"
+    },
+    {
+      "name": "Température circuit",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "logicalId": "FlowTemperatureBoiler",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Température retour circuit",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "isHistorized": 0,
+      "unite": "°C",
+      "logicalId": "ReturnTemperatureBoiler",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
     }
   ]
 }
