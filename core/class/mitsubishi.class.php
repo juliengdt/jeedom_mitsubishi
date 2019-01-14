@@ -20,6 +20,7 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class mitsubishi extends eqLogic {
+  public static $_widgetPossibility = array('custom' => true);
 
   public static function cron5() {
     if (config::byKey('token', 'mitsubishi', '') == '') {
@@ -197,20 +198,20 @@ class mitsubishi extends eqLogic {
       $value = floatval($array['Value'])*100;
       switch ($array['Key']) {
         case 'Stop':
-          $this->checkAndUpdateCmd('ModeStop', $value);
-          break;
+        $this->checkAndUpdateCmd('ModeStop', $value);
+        break;
         case 'HotWater':
-          $this->checkAndUpdateCmd('ModeHotWater', $value);
-            break;
+        $this->checkAndUpdateCmd('ModeHotWater', $value);
+        break;
         case 'Heating':
-          $this->checkAndUpdateCmd('ModeHeating', $value);
-          break;
+        $this->checkAndUpdateCmd('ModeHeating', $value);
+        break;
         case 'LegionellaPrevention':
-          $this->checkAndUpdateCmd('ModeLegionellaPrevention', $value);
-          break;
+        $this->checkAndUpdateCmd('ModeLegionellaPrevention', $value);
+        break;
         case 'PowerOff':
-          $this->checkAndUpdateCmd('ModePowerOff', $value);
-          break;
+        $this->checkAndUpdateCmd('ModePowerOff', $value);
+        break;
       }
     }
   }
@@ -340,6 +341,29 @@ class mitsubishi extends eqLogic {
         $cmd->save();
       }
     }
+  }
+
+  public function toHtml($_version = 'dashboard') {
+    $replace = $this->preToHtml($_version);
+    if (!is_array($replace)) {
+      return $replace;
+    }
+    $version = jeedom::versionAlias($_version);
+    foreach ($this->getCmd('info') as $cmd) {
+      $replace['#' . $cmd->getLogicalId() . '_history#'] = '';
+      $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+      $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
+      $replace['#' . $cmd->getLogicalId() . '_collect#'] = $cmd->getCollectDate();
+      if ($cmd->getIsHistorized() == 1) {
+        $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
+      }
+    }
+    if ($replace['#notOffline#'] == 1) {
+      $replace['#notOfflineValue#'] = 5;
+    } else {
+      $replace['#notOfflineValue#'] = 0;
+    }
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('type'), 'mitsubishi')));
   }
 
 }
