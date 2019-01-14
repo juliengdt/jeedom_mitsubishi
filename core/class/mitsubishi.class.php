@@ -370,7 +370,7 @@ class mitsubishi extends eqLogic {
         $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
       }
     }
-    if (isset($replace['#notOffline#']) && ($replace['#notOffline#'] == 1) {
+    if (($this->getConfiguration('SubType') == 'water') && ($replace['#notOffline#'] == 1)) {
       $replace['#notOfflineValue#'] = "5";
     } else {
       $replace['#notOfflineValue#'] = "0";
