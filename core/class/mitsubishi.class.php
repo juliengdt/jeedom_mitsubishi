@@ -367,6 +367,7 @@ class mitsubishi extends eqLogic {
     } else {
       $replace['#notOfflineValue#'] = 0;
     }
+    log::add('mitsubishi', 'debug', 'Widget');
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('type'), 'mitsubishi')));
   }
 
