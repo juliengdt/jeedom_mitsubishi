@@ -334,7 +334,7 @@ class mitsubishi extends eqLogic {
         }
       }
       if ($cmd == null || !is_object($cmd)) {
-        $cmd = new geotravCmd();
+        $cmd = new mitsubishiCmd();
         $cmd->setEqLogic_id($this->getId());
         utils::a2o($cmd, $command);
         $cmd->save();
