@@ -301,6 +301,7 @@ class mitsubishi extends eqLogic {
     }
     $this->checkAndUpdateCmd('OperationModeText', $value);
   }
+
   public function updateOperationModeZone($_zone,$_option){
     switch ($_option){
       case 0:
@@ -315,7 +316,6 @@ class mitsubishi extends eqLogic {
     }
     $this->checkAndUpdateCmd($_zone . 'Text', $value);
   }
-
 
   public function loadCmdFromConf($_type) {
     if (!is_file(dirname(__FILE__) . '/../config/devices/' . $_type . '.json')) {
