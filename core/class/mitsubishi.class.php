@@ -103,27 +103,7 @@ class mitsubishi extends eqLogic {
               $mitsubishi->checkAndUpdateCmd('ErrorMessage','aucun');
               $mitsubishi->checkAndUpdateCmd('ErrorCode',0);
             }
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS');
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName'] . 'ECS');
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'waterECS');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('waterECS');
-            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
-            $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
-            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
-            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
-            $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
-            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
+
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -147,6 +127,7 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone1',$device['Device']['SetHeatFlowTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone1',$device['Device']['FlowTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone1',$device['Device']['ReturnTemperatureZone1']);
+
             $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2', 'mitsubishi');
             if (!is_object($mitsubishi)) {
               $mitsubishi = new mitsubishi();
@@ -170,6 +151,33 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone2',$device['Device']['SetHeatFlowTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone2',$device['Device']['FlowTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone2',$device['Device']['ReturnTemperatureZone2']);
+
+            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
+            if (!is_object($mitsubishi)) {
+              $mitsubishi = new mitsubishi();
+              $mitsubishi->setEqType_name('mitsubishi');
+              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS');
+              $mitsubishi->setIsEnable(1);
+              $mitsubishi->setIsVisible(1);
+              $mitsubishi->setName($device['DeviceName'] . 'ECS');
+              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+              $mitsubishi->setConfiguration('SubType', 'waterECS');
+              $mitsubishi->save();
+            }
+            $mitsubishi->loadCmdFromConf('waterECS');
+            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
+            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
+            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
+            $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
+            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
+            if ($device['Device']['IdleZone1'] && $device['Device']['IdleZone2']) {
+              $mitsubishi->checkAndUpdateCmd('IdleECS',0);
+            } else {
+              $mitsubishi->checkAndUpdateCmd('IdleECS',1);
+            }
           }
 
         }
