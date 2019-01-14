@@ -367,8 +367,7 @@ class mitsubishi extends eqLogic {
     } else {
       $replace['#notOfflineValue#'] = 0;
     }
-    log::add('mitsubishi', 'debug', 'Widget');
-    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('type'), 'mitsubishi')));
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('SubType'), 'mitsubishi')));
   }
 
 }
@@ -376,14 +375,16 @@ class mitsubishi extends eqLogic {
 class mitsubishiCmd extends cmd {
   public function execute($_options = array()) {
     if ($this->getType() == 'action') {
-      $Eqlogic = $this->getEqLogic();
-      if ($this->getSubType() == 'slider') {
-        $option = $_options['slider'];
-      } else {
-        $option = $this->getConfiguration('option');
+      if ($this->getLogicalId() != 'refresh') {
+        $Eqlogic = $this->getEqLogic();
+        if ($this->getSubType() == 'slider') {
+          $option = $_options['slider'];
+        } else {
+          $option = $this->getConfiguration('option');
+        }
+        log::add('mitsubishi', 'debug', 'Action ' . $option . ' ' . $this->getConfiguration('flag') . ' ' . $this->getConfiguration('idflag'));
+        $Eqlogic->setModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
       }
-      log::add('mitsubishi', 'debug', 'Action ' . $option . ' ' . $this->getConfiguration('flag') . ' ' . $this->getConfiguration('idflag'));
-      $Eqlogic->setModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
       mitsubishi::refreshAll();
     }
   }

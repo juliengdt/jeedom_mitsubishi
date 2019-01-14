@@ -1,7 +1,7 @@
 {
     "id": "mitsubishi",
-    "name": "Melcloud",
-    "description": "Permet de gérer votre PAC Mitsubishi équipée d'un module Wifi MelCloud",
+    "name": "Mitsubishi Melcloud",
+    "description": "Permet de gérer vos PAC ou climatisations Mitsubishi équipées d'un module Wifi MelCloud",
     "author": "lunarok",
     "require": "3.0",
     "category": "wellness",
