@@ -370,10 +370,20 @@ class mitsubishi extends eqLogic {
         $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
       }
     }
-    if ($replace['#notOffline#'] == 1) {
-      $replace['#notOfflineValue#'] = 5;
+    if (isset($replace['#notOffline#']) && ($replace['#notOffline#'] == 1) {
+      $replace['#notOfflineValue#'] = "5";
     } else {
-      $replace['#notOfflineValue#'] = 0;
+      $replace['#notOfflineValue#'] = "0";
+    }
+    if ($this->getConfiguration('SubType') == 'waterZone1') {
+      if ($replace['#OperationModeZone1#'] == 1) {
+        $replace['#SetTemperatureZone1#'] = $replace['#SetHeatFlowTemperatureZone1#'];
+      }
+    }
+    if ($this->getConfiguration('SubType') == 'waterZone2') {
+      if ($replace['#OperationModeZone2'] == 1) {
+        $replace['#SetTemperatureZone2#'] = $replace['#SetHeatFlowTemperatureZone2#'];
+      }
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('SubType'), 'mitsubishi')));
   }
