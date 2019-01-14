@@ -44,7 +44,7 @@ if (!isConnect()) {
 
 <script>
 
-    function loxone_postSaveConfiguration(){
+    function mitsubishi_postSaveConfiguration(){
       $.ajax({// fonction permettant de faire de l'ajax
       type: "POST", // methode de transmission des données au fichier php
       url: "plugins/mitsubishi/core/ajax/mitsubishi.ajax.php", // url du fichier php
@@ -65,4 +65,3 @@ if (!isConnect()) {
 }
 
 </script>
-
