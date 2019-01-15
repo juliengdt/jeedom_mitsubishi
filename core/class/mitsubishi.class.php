@@ -372,8 +372,10 @@ class mitsubishi extends eqLogic {
     }
     if (($this->getConfiguration('SubType') == 'water') && ($replace['#notOffline#'] == 1)) {
       $replace['#notOfflineValue#'] = "5";
+      $replace['#isRunning#'] = "fa-sync fa-spin";
     } else {
       $replace['#notOfflineValue#'] = "0";
+      $replace['#isRunning#'] = "fa-times";
     }
     if ($this->getConfiguration('SubType') == 'waterZone1') {
       if ($replace['#OperationModeZone1#'] == 1) {
