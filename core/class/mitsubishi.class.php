@@ -173,11 +173,7 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
-            if ($device['Device']['IdleZone1'] && $device['Device']['IdleZone2']) {
-              $mitsubishi->checkAndUpdateCmd('IdleECS',0);
-            } else {
-              $mitsubishi->checkAndUpdateCmd('IdleECS',1);
-            }
+            $mitsubishi->checkAndUpdateCmd('IdleECS',$device['Device']['OperationMode']);
           }
 
         }
