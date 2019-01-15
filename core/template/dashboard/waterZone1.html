@@ -1,24 +1,40 @@
-<div class="eqLogic-widget eqLogic" style="min-height: 160px;min-width: 160px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+<div class="eqLogic-widget eqLogic" style="min-height: 160px;min-width: 160px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#actionSetTemperatureZone1_id#" data-eqLogic_uid="#uid#" data-version="#version#" >
 	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#"><strong>#name_display#</a></strong></center><br />
 	<div class="verticalAlign">
 		<center>
 
-      <div style="display: table; overflow: hidden; width: 95%">
+			<div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
 					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #RoomTemperatureZone1#</center>
 					</div>
-					<div style="display: table-cell; width: 50%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="PAC">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon techno-ventilateur"></i> #SetTemperatureZone1#</center>
+					<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#actionSetTemperatureZone1_id#" style="min-width:180px;min-height:60px;font-size: 10;" >
+						<center>
+							<div class="btn-group">
+								<div style="width: 100%; text-align:center;">
+									<div style="float: left; height: 90px;">
+										<span style="font-size: 4em; margin-right: 10px;" id="sbjs_icon#actionSetTemperatureZone1_id#"></span>
+										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone1_id#"></span>
+										<span style="font-size: 16px">°C</span>
+									</div>
+									<div style="float: left; margin-top: 8px; width: 35px; height: 80px; font-size: 2em; text-align: center; line-height: 30px;">
+										<a style="cursor: pointer;" class="btn-sm bt_plus" ><i class="fa fa-2x fa-plus-square"></i></a>
+										<br />
+										<a style="cursor: pointer;" class="btn-sm bt_minus" ><i class="fa fa-2x fa-minus-square"></i></a>
+									</div>
+								</div>
+							</div>
+						</center>
+
 					</div>
 					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureZone1#</center>
-			    	<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone1#</center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone1#</center>
 					</div>
 				</div>
 			</div>
 
-      <div style="display: table; overflow: hidden; width: 95%">
+			<div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
 					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Statut">
 						<center>Statut</center>
@@ -33,3 +49,49 @@
 		</center>
 	</div>
 </div>
+
+<script>
+	var sbjs_Timer#actionSetTemperatureZone1_id#;
+
+	/***** Init *****/
+	$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(#state#).toFixed(1) );
+	setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
+
+	/***** + *****/
+	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_plus').on('click', function () {
+		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) + 0.5 ).toFixed(1) );
+		setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
+
+		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
+		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
+	});
+
+	/***** - *****/
+	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_minus').on('click', function () {
+		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) - 0.5 ).toFixed(1) );
+		setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
+
+		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
+		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
+	});
+
+	/***** Mise à jour de l'icone en fonction de la température *****/
+	function sbjs_updateIcon#actionSetTemperatureZone1_id#() {
+		var sbjs_temp#actionSetTemperatureZone1_id# = parseFloat( $('#valeur#actionSetTemperatureZone1_id#').text() );
+
+		if ( sbjs_temp#actionSetTemperatureZone1_id# < 18 )
+		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-froid"></i>');
+		else if ( sbjs_temp#actionSetTemperatureZone1_id# <= 23 )
+		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-moyen"></i>');
+		else
+		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-chaud"></i>');
+	}
+
+	/***** Envoi de la nouvelle consigne *****/
+	function sbjs_Save#actionSetTemperatureZone1_id#() {
+		jeedom.cmd.execute({
+			id: '#actionSetTemperatureZone1_id#',
+			value: { slider: parseFloat( $('#valeur#actionSetTemperatureZone1_id#').text() ) }
+		});
+	}
+</script>
