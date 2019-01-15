@@ -381,10 +381,20 @@ class mitsubishi extends eqLogic {
       if ($replace['#OperationModeZone1#'] == 1) {
         $replace['#SetTemperatureZone1#'] = $replace['#SetHeatFlowTemperatureZone1#'];
       }
+      if ($replace['#IdleZone1#'] == 1) {
+        $replace['#isRunning#'] = "fa-times";
+      } else {
+        $replace['#isRunning#'] = "fa-sync fa-spin";
+      }
     }
     if ($this->getConfiguration('SubType') == 'waterZone2') {
       if ($replace['#OperationModeZone2'] == 1) {
         $replace['#SetTemperatureZone2#'] = $replace['#SetHeatFlowTemperatureZone2#'];
+      }
+      if ($replace['#IdleZone2#'] == 1) {
+        $replace['#isRunning#'] = "fa-times";
+      } else {
+        $replace['#isRunning#'] = "fa-sync fa-spin";
       }
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('SubType'), 'mitsubishi')));
