@@ -381,11 +381,11 @@ class mitsubishi extends eqLogic {
     if ($this->getConfiguration('SubType') == 'waterZone1') {
       if ($replace['#OperationModeZone1#'] == 1) {
         $replace['#SetTemperatureZone#'] = $replace['#SetHeatFlowTemperatureZone1#'];
-        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone1')
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone1');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       } else {
         $replace['#SetTemperatureZone#'] = $replace['#SetTemperatureZone1#'];
-        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone1')
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone1');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
       if ($replace['#IdleZone1#'] == 1) {
@@ -401,11 +401,11 @@ class mitsubishi extends eqLogic {
     if ($this->getConfiguration('SubType') == 'waterZone2') {
       if ($replace['#OperationModeZone2#'] == 1) {
         $replace['#SetTemperatureZone#'] = $replace['#SetHeatFlowTemperatureZone2#'];
-        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone2')
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone2');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       } else {
         $replace['#SetTemperatureZone#'] = $replace['#SetTemperatureZone2#'];
-        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone2')
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone2');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
       if ($replace['#IdleZone2#'] == 1) {
