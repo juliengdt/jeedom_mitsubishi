@@ -79,13 +79,13 @@
       },
       "configuration" : {
         "option" : "slider",
-        "flag" : "SetHeatFlowTemperatureZone1",
+        "flag" : "SetHeatFlowTemperatureZone2",
         "idflag" : 281474976710688,
         "minValue" : 30,
         "maxValue" : 55
       },
       "isVisible": 1,
-      "logicalId": "actionSetTemperatureZone1",
+      "logicalId": "actionSetHeatFlowTemperatureZone1",
       "value": "Consigne"
     },
     {

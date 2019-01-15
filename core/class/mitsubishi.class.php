@@ -392,6 +392,7 @@ class mitsubishi extends eqLogic {
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone1#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone1#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone1#'];
+      $replace['#OperationModeZoneText#'] = $replace['#OperationModeZone1Text#'];
       $template = "waterZone";
     }
     if ($this->getConfiguration('SubType') == 'waterZone2') {
@@ -412,6 +413,7 @@ class mitsubishi extends eqLogic {
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone2#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone2#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
+      $replace['#OperationModeZoneText#'] = $replace['#OperationModeZone2Text#'];
       $template = "waterZone";
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $template, 'mitsubishi')));
