@@ -7,14 +7,14 @@
 			<div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
 					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #RoomTemperatureZone1#</center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #RoomTemperatureZone#</center>
 					</div>
-					<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#actionSetTemperatureZone1_id#" style="min-width:180px;min-height:60px;font-size: 10;" >
+					<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#actionSetTemperatureZone_id#" style="min-width:180px;min-height:60px;font-size: 10;" >
 						<center>
 							<div class="btn-group">
 								<div style="width: 100%; text-align:center;">
 									<div style="float: left; height: 90px;">
-										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone1_id#"></span>
+										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone_id#"></span>
 										<span style="font-size: 16px">°C</span>
 									</div>
 									<div style="float: left; margin-top: 8px; width: 35px; height: 80px; font-size: 2em; text-align: center; line-height: 30px;">
@@ -28,8 +28,8 @@
 
 					</div>
 					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureZone1#</center>
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone1#</center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureZone#</center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone#</center>
 					</div>
 					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Statut">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa #isRunning#" style="font-size: 2em;"></i></center>
@@ -42,32 +42,32 @@
 </div>
 
 <script>
-	var sbjs_Timer#actionSetTemperatureZone1_id#;
+	var sbjs_Timer#actionSetTemperatureZone_id#;
 
 	/***** Init *****/
-	$('#valeur#actionSetTemperatureZone1_id#').text( #SetTemperatureZone1# );
+	$('#valeur#actionSetTemperatureZone_id#').text( #SetTemperatureZone# );
 
 	/***** + *****/
-	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_plus').on('click', function () {
-		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) + 0.5 ).toFixed(1) );
+	$('.cmd[data-cmd_id=#actionSetTemperatureZone_id#] .bt_plus').on('click', function () {
+		$('#valeur#actionSetTemperatureZone_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone_id#').text()) + 0.5 ).toFixed(1) );
 
-		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
-		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
+		clearTimeout(sbjs_Timer#actionSetTemperatureZone_id#);
+		sbjs_Timer#actionSetTemperatureZone_id# = setTimeout(sbjs_Save#actionSetTemperatureZone_id#, 1500);
 	});
 
 	/***** - *****/
-	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_minus').on('click', function () {
-		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) - 0.5 ).toFixed(1) );
+	$('.cmd[data-cmd_id=#actionSetTemperatureZone_id#] .bt_minus').on('click', function () {
+		$('#valeur#actionSetTemperatureZone_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone_id#').text()) - 0.5 ).toFixed(1) );
 
-		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
-		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
+		clearTimeout(sbjs_Timer#actionSetTemperatureZone_id#);
+		sbjs_Timer#actionSetTemperatureZone_id# = setTimeout(sbjs_Save#actionSetTemperatureZone_id#, 1500);
 	});
 
 	/***** Envoi de la nouvelle consigne *****/
-	function sbjs_Save#actionSetTemperatureZone1_id#() {
+	function sbjs_Save#actionSetTemperatureZone_id#() {
 		jeedom.cmd.execute({
-			id: '#actionSetTemperatureZone1_id#',
-			value: { slider: parseFloat( $('#valeur#actionSetTemperatureZone1_id#').text() ) }
+			id: '#actionSetTemperatureZone_id#',
+			value: { slider: parseFloat( $('#valeur#actionSetTemperatureZone_id#').text() ) }
 		});
 	}
 </script>

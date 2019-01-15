@@ -360,8 +360,9 @@ class mitsubishi extends eqLogic {
     if (!is_array($replace)) {
       return $replace;
     }
+    $template = $this->getConfiguration('SubType');
     $version = jeedom::versionAlias($_version);
-    foreach ($this->getCmd() as $cmd) {
+    foreach ($this->getCmd('info') as $cmd) {
       $replace['#' . $cmd->getLogicalId() . '_history#'] = '';
       $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
       $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
@@ -379,23 +380,43 @@ class mitsubishi extends eqLogic {
     }
     if ($this->getConfiguration('SubType') == 'waterZone1') {
       if ($replace['#OperationModeZone1#'] == 1) {
-        $replace['#SetTemperatureZone1#'] = $replace['#SetHeatFlowTemperatureZone1#'];
+        $replace['#SetTemperatureZone#'] = $replace['#SetHeatFlowTemperatureZone1#'];
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone1')
+        $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
+      } else {
+        $replace['#SetTemperatureZone#'] = $replace['#SetTemperatureZone1#'];
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone1')
+        $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
       if ($replace['#IdleZone1#'] == 1) {
         $replace['#isRunning#'] = "fa-times";
       } else {
         $replace['#isRunning#'] = "fa-sync fa-spin";
       }
+      $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone1#'];
+      $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone1#'];
+      $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone1#'];
+      $template = "waterZone";
     }
     if ($this->getConfiguration('SubType') == 'waterZone2') {
-      if ($replace['#OperationModeZone2'] == 1) {
-        $replace['#SetTemperatureZone2#'] = $replace['#SetHeatFlowTemperatureZone2#'];
+      if ($replace['#OperationModeZone2#'] == 1) {
+        $replace['#SetTemperatureZone#'] = $replace['#SetHeatFlowTemperatureZone2#'];
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetHeatFlowTemperatureZone2')
+        $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
+      } else {
+        $replace['#SetTemperatureZone#'] = $replace['#SetTemperatureZone2#'];
+        $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone2')
+        $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
       if ($replace['#IdleZone2#'] == 1) {
         $replace['#isRunning#'] = "fa-times";
       } else {
         $replace['#isRunning#'] = "fa-sync fa-spin";
       }
+      $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone2#'];
+      $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone2#'];
+      $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
+      $template = "waterZone";
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('SubType'), 'mitsubishi')));
   }
