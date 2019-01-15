@@ -414,7 +414,7 @@ class mitsubishi extends eqLogic {
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
       $template = "waterZone";
     }
-    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $this->getConfiguration('SubType'), 'mitsubishi')));
+    return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $template, 'mitsubishi')));
   }
 
 }
