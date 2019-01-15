@@ -361,7 +361,7 @@ class mitsubishi extends eqLogic {
       return $replace;
     }
     $version = jeedom::versionAlias($_version);
-    foreach ($this->getCmd('info') as $cmd) {
+    foreach ($this->getCmd() as $cmd) {
       $replace['#' . $cmd->getLogicalId() . '_history#'] = '';
       $replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
       $replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
