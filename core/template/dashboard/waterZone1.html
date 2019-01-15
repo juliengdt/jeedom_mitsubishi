@@ -14,7 +14,6 @@
 							<div class="btn-group">
 								<div style="width: 100%; text-align:center;">
 									<div style="float: left; height: 90px;">
-										<span style="font-size: 4em; margin-right: 10px;" id="sbjs_icon#actionSetTemperatureZone1_id#"></span>
 										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone1_id#"></span>
 										<span style="font-size: 16px">°C</span>
 									</div>
@@ -46,13 +45,11 @@
 	var sbjs_Timer#actionSetTemperatureZone1_id#;
 
 	/***** Init *****/
-	$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(#SetTemperatureZone1#).toFixed(1) );
-	setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
+	$('#valeur#actionSetTemperatureZone1_id#').text( #SetTemperatureZone1# );
 
 	/***** + *****/
 	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_plus').on('click', function () {
 		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) + 0.5 ).toFixed(1) );
-		setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
 
 		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
 		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
@@ -61,23 +58,10 @@
 	/***** - *****/
 	$('.cmd[data-cmd_id=#actionSetTemperatureZone1_id#] .bt_minus').on('click', function () {
 		$('#valeur#actionSetTemperatureZone1_id#').text( parseFloat(parseFloat($('#valeur#actionSetTemperatureZone1_id#').text()) - 0.5 ).toFixed(1) );
-		setTimeout(sbjs_updateIcon#actionSetTemperatureZone1_id#, 50);
 
 		clearTimeout(sbjs_Timer#actionSetTemperatureZone1_id#);
 		sbjs_Timer#actionSetTemperatureZone1_id# = setTimeout(sbjs_Save#actionSetTemperatureZone1_id#, 1500);
 	});
-
-	/***** Mise à jour de l'icone en fonction de la température *****/
-	function sbjs_updateIcon#actionSetTemperatureZone1_id#() {
-		var sbjs_temp#actionSetTemperatureZone1_id# = parseFloat( $('#valeur#actionSetTemperatureZone1_id#').text() );
-
-		if ( sbjs_temp#actionSetTemperatureZone1_id# < 18 )
-		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-froid"></i>');
-		else if ( sbjs_temp#actionSetTemperatureZone1_id# <= 23 )
-		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-moyen"></i>');
-		else
-		$('#sbjs_icon#actionSetTemperatureZone1_id#').html('<i class="icon jeedom-thermo-chaud"></i>');
-	}
 
 	/***** Envoi de la nouvelle consigne *****/
 	function sbjs_Save#actionSetTemperatureZone1_id#() {
