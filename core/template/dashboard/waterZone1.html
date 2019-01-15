@@ -1,11 +1,11 @@
-<div class="eqLogic-widget eqLogic" style="min-height: 160px;min-width: 160px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#actionSetTemperatureZone1_id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+<div class="eqLogic-widget eqLogic allowResize" style="min-height: 160px;min-width: 240px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#actionSetTemperatureZone1_id#" data-eqLogic_uid="#uid#" data-version="#version#" >
 	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#"><strong>#name_display#</a></strong></center><br />
 	<div class="verticalAlign">
 		<center>
 
 			<div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
-					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
+					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #RoomTemperatureZone1#</center>
 					</div>
 					<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#actionSetTemperatureZone1_id#" style="min-width:180px;min-height:60px;font-size: 10;" >
@@ -14,7 +14,7 @@
 								<div style="width: 100%; text-align:center;">
 									<div style="float: left; height: 90px;">
 										<span style="font-size: 4em; margin-right: 10px;" id="sbjs_icon#actionSetTemperatureZone1_id#"></span>
-										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone1_id#"></span>
+										<span style="font-size: 4em; font-weight: bold;" id="valeur#actionSetTemperatureZone1_id#">#SetTemperatureZone1#</span>
 										<span style="font-size: 16px">°C</span>
 									</div>
 									<div style="float: left; margin-top: 8px; width: 35px; height: 80px; font-size: 2em; text-align: center; line-height: 30px;">
@@ -27,21 +27,12 @@
 						</center>
 
 					</div>
-					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
+					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureZone1#</center>
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone1#</center>
 					</div>
-				</div>
-			</div>
-
-			<div style="display: table; overflow: hidden; width: 95%">
-				<div style="display: table-row;">
-					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Statut">
-						<center>Statut</center>
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-power-off" style="font-size: 2em;"></i> #IdleZone1#</center>
-					</div>
-					<div style="display: table-cell; width: 75%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Mode">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;">Mode #OperationModeZone1Text#</center>
+					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Statut">
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa #isRunning#" style="font-size: 2em;"></i></center>
 					</div>
 				</div>
 			</div>
