@@ -1,4 +1,4 @@
-<div class="eqLogic-widget eqLogic allowResize border-danger" style="min-height: 200px;min-width: 300px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+<div class="eqLogic-widget eqLogic allowResize" style="min-height: 200px;min-width: 300px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
 <i class='fa #isRunning# pull-left' style="margin-top: 3px;margin-right: 3px;"></i>
 	<center class="widget-name"><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#"><strong>#name_display#</a></strong></center><br />
 	<div class="verticalAlign">
@@ -6,9 +6,10 @@
 
 			<div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
-					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
+					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #RoomTemperatureZone#</center>
 					</div>
+					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
 					<div class="cmd" data-type="action" data-subtype="slider" data-cmd_id="#actionSetTemperatureZone_id#" style="min-width:180px;min-height:60px;font-size: 10;" >
 						<center>
 							<div class="btn-group">
@@ -27,12 +28,10 @@
 						</center>
 
 					</div>
-					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
+					</div>
+					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureZone#</center>
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureZone#</center>
-					</div>
-					<div style="display: table-cell; width: 20%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Statut">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa #isRunning#" style="font-size: 2em;"></i></center>
 					</div>
 				</div>
 			</div>
