@@ -9,7 +9,9 @@ if (!isConnect('admin')) {
 	<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Informations}}</a></li>
 </ul>
 
-<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="containerPlot" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<br />
+<div id="container360" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 
 
 <?php include_file('desktop', 'mitsubishi', 'js', 'mitsubishi');?>
@@ -17,7 +19,7 @@ if (!isConnect('admin')) {
 <script>
 
 // Create the chart
-Highcharts.chart('container', {
+Highcharts.chart('containerPlot', {
   chart: {
     type: 'column'
   },
@@ -86,23 +88,75 @@ echo '
 					"name": "Chauffage énergie produite",
 					"y": ' . $ProducedHeating . ',
 				}';
-
-				?>
-				<?php
-				$eqLogic = mitsubishi::byId(init(id));
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeStop');
-				$ModeStop = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHotWater');
-				$ModeHotWater = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHeating');
-				$ModeHeating = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'LegionellaPrevention');
-				$LegionellaPrevention = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModePowerOff');
-				$ModePowerOff = $cmd->execCmd();
-				?>
+?>
       ]
     }
   ]
+});
+
+
+// Build the chart
+Highcharts.chart('container360', {
+  chart: {
+    plotBackgroundColor: null,
+    plotBorderWidth: null,
+    plotShadow: false,
+    type: 'pie'
+  },
+  title: {
+    text: 'Répartition du fonctionnement de la veille'
+  },
+  tooltip: {
+    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+  },
+  plotOptions: {
+    pie: {
+      allowPointSelect: true,
+      cursor: 'pointer',
+      dataLabels: {
+        enabled: false
+      },
+      showInLegend: true
+    }
+  },
+  series: [{
+	name: 'Brands',
+	colorByPoint: true,
+	data: [
+
+		<?php
+		$eqLogic = mitsubishi::byId(init(id));
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeStop');
+		$ModeStop = $cmd->execCmd();
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHotWater');
+		$ModeHotWater = $cmd->execCmd();
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHeating');
+		$ModeHeating = $cmd->execCmd();
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'LegionellaPrevention');
+		$LegionellaPrevention = $cmd->execCmd();
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModePowerOff');
+		$ModePowerOff = $cmd->execCmd();
+
+
+		echo "{
+      name: 'Arrêt',
+      y: " . $ModeStop . "
+    }, {
+      name: 'Eteint',
+      y: " . $ModePowerOff . "
+    }, {
+      name: 'Eau Chaude',
+      y: " . $ModeHotWater . "
+    }, {
+      name: 'Chauffage',
+      y: " . $ModeHeating . "
+    }, {
+      name: 'Choc Thermique',
+      y: " . $LegionellaPrevention . "
+    }";
+
+			?>
+		]
+  }]
 });
 </script>
