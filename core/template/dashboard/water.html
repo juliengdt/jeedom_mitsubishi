@@ -1,4 +1,4 @@
-<div class="eqLogic-widget eqLogic allowResize" style="min-height: 200px;min-width: 320px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
+<div class="eqLogic-widget eqLogic allowResize" style="min-height: 200px;min-width: 350px;border:#border#;border-radius:#border-radius#;background-color: #background-color#;color: #color#;#style#" data-eqLogic_id="#id#" data-eqLogic_uid="#uid#" data-version="#version#" >
 	<i class='fa #isRunning# pull-left' style="margin-top: 3px;margin-left: 3px;"></i>
 	<center class="widget-name"><strong><a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display#</a></strong></center><br />
 	<div class="verticalAlign">
@@ -46,7 +46,7 @@
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon jeedom2-fdp1-signal#notOfflineValue#" style="font-size: 2em;"></i></center>
 					</div>
 					<div style="display: table-cell; width: 50%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Stats">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;">CoP : #CoP# <i class="icon techno-courbes" style="font-size: 2em;" id="stats"></i></center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;">CoP : #CoP# <i class="icon techno-courbes" style="font-size: 2em;" id="stats#id#"></i></center>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 </div>
 
 <script>
-	$('#stats').on('click', function() {
+	$('#stats#id#').on('click', function() {
 		$('#md_modal2').dialog({
 			title: "Votre Vigilance"
 		});
