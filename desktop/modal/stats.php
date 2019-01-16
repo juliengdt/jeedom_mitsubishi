@@ -57,7 +57,7 @@ Highcharts.chart('container', {
       "colorByPoint": true,
       "data": [
 				<?php
-				$eqLogic = mitsubishi::byLogicalId();
+				$eqLogic = mitsubishi::byId(init(id));
 				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'HotWater');
 				$HotWater = $cmd->execCmd();
 				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'Heating');
@@ -88,7 +88,19 @@ echo '
 				}';
 
 				?>
-
+				<?php
+				$eqLogic = mitsubishi::byId(init(id));
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeStop');
+				$ModeStop = $cmd->execCmd();
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHotWater');
+				$ModeHotWater = $cmd->execCmd();
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHeating');
+				$ModeHeating = $cmd->execCmd();
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'LegionellaPrevention');
+				$LegionellaPrevention = $cmd->execCmd();
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModePowerOff');
+				$ModePowerOff = $cmd->execCmd();
+				?>
       ]
     }
   ]

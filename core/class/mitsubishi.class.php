@@ -373,6 +373,7 @@ class mitsubishi extends eqLogic {
     if ($this->getConfiguration('SubType') == 'water') {
       $replace['#notOfflineValue#'] = ($replace['#notOffline#'] == 1) ? "5":"0";
       $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sun" : "fa-times-circle";
+      $replace['#id#'] = $this->getId();
       if ($replace['#ErrorCode#'] != 0) {
         $replace['#background-color#'] = "red";
       } else {
