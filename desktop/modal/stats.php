@@ -59,16 +59,15 @@ Highcharts.chart('containerPlot', {
       "colorByPoint": true,
       "data": [
 				<?php
-				$eqLogic = mitsubishi::byId(init(id));
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'HotWater');
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'HotWater');
 				$HotWater = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'Heating');
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'Heating');
 				$Heating = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ProducedHotWater');
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ProducedHotWater');
 				$ProducedHotWater = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ProducedHeating');
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ProducedHeating');
 				$ProducedHeating = $cmd->execCmd();
-				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'CoP');
+				$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'CoP');
 				$CoP = $cmd->execCmd();
 
 echo '
@@ -125,18 +124,16 @@ Highcharts.chart('container360', {
 	data: [
 
 		<?php
-		$eqLogic = mitsubishi::byId(init(id));
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeStop');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModeStop');
 		$ModeStop = $cmd->execCmd();
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHotWater');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModeHotWater');
 		$ModeHotWater = $cmd->execCmd();
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModeHeating');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModeHeating');
 		$ModeHeating = $cmd->execCmd();
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'LegionellaPrevention');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'LegionellaPrevention');
 		$LegionellaPrevention = $cmd->execCmd();
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($eqLogic->getId(),'ModePowerOff');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModePowerOff');
 		$ModePowerOff = $cmd->execCmd();
-
 
 		echo "{
       name: 'Arrêt',
