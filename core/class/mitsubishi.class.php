@@ -369,11 +369,20 @@ class mitsubishi extends eqLogic {
     }
     if ($this->getConfiguration('SubType') == 'water') {
       $replace['#notOfflineValue#'] = ($replace['#notOffline#'] == 1) ? "5":"0";
-      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sync fa-spin" : "fa-times";
+      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-play" : "fa-stop";
       if ($replace['#ErrorCode#'] != 0) {
         $replace['#background-color#'] = "red";
+      } else {
+        $replace['#ErrorMessage#'] = "";
       }
-      $replace['#background-color#'] = "red";
+    }
+    if ($this->getConfiguration('SubType') == 'waterECS') {
+      $replace['#isRunning#'] = ($replace['#IdleECS#'] == 1) ? "fa-play" : "fa-stop";
+      if ($replace['#ErrorCode#'] != 0) {
+        $replace['#background-color#'] = "red";
+      } else {
+        $replace['#ErrorMessage#'] = "";
+      }
     }
     if ($this->getConfiguration('SubType') == 'waterZone1') {
       if ($replace['#OperationModeZone1#'] == 1) {
@@ -385,11 +394,7 @@ class mitsubishi extends eqLogic {
         $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone1');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
-      if ($replace['#IdleZone1#'] == 1) {
-        $replace['#isRunning#'] = "fa-times";
-      } else {
-        $replace['#isRunning#'] = "fa-sync fa-spin";
-      }
+      $replace['#isRunning#'] = ($replace['#IdleZone1#'] == 1) ? "fa-play" : "fa-stop";
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone1#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone1#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone1#'];
@@ -406,11 +411,7 @@ class mitsubishi extends eqLogic {
         $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone2');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
-      if ($replace['#IdleZone2#'] == 1) {
-        $replace['#isRunning#'] = "fa-times";
-      } else {
-        $replace['#isRunning#'] = "fa-sync fa-spin";
-      }
+      $replace['#isRunning#'] = ($replace['#IdleZone2#'] == 1) ? "fa-play" : "fa-stop";
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone2#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone2#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
