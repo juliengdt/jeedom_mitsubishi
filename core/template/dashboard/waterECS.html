@@ -7,12 +7,22 @@
       <div style="display: table; overflow: hidden; width: 95%">
 				<div style="display: table-row;">
 					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Température">
-						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i> #TankWaterTemperature# °C</center>
+						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon divers-thermometer31" style="font-size: 2em;"></i><br />#TankWaterTemperature# °C</center>
 					</div>
-					<div style="display: table-cell; width: 50%;cursor:default;font-size: 1em; text-align:center; vertical-align: middle;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Consigne">
-						<span style="font-size: 4em; font-weight: bold;">#SetTankWaterTemperature#</span>
-						<span style="font-size: 16px">°C</span>
+
+					<div class="cmd" style="min-width:180px;min-height:60px;font-size: 10;" >
+						<center>
+							<div class="btn-group">
+								<div style="width: 100%; text-align:center; vertical-align: middle;">
+									<div style="float: left; height: 90px;">
+										<span style="font-size: 4em; font-weight: bold;">#SetTankWaterTemperature#</span>
+										<span style="font-size: 16px">°C</span>
+									</div>
+								</div>
+							</div>
+						</center>
 					</div>
+
 					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-right"></i> #FlowTemperatureBoiler# °C</center>
 			    	<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-arrow-left"></i> #ReturnTemperatureBoiler# °C</center>
