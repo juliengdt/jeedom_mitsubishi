@@ -85,7 +85,7 @@
         "maxValue" : 55
       },
       "isVisible": 1,
-      "logicalId": "actionSetHeatFlowTemperatureZone1",
+      "logicalId": "actionSetHeatFlowTemperatureZone2",
       "value": "Consigne"
     },
     {
