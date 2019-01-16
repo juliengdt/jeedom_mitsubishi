@@ -3,12 +3,6 @@ if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
 ?>
-<br/>
-<a class="btn btn-success pull-right" id="bt_saveConfiguration"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
-<ul class="nav nav-tabs" role="tablist">
-	<li role="presentation" class="active"><a href="#eqlogictab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-tachometer"></i> {{Informations}}</a></li>
-</ul>
-
 <div id="containerPlot" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 <br />
 <div id="container360" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
@@ -23,6 +17,9 @@ Highcharts.chart('containerPlot', {
   chart: {
     type: 'column'
   },
+       credits: {
+      enabled: false
+   },
   title: {
     text: 'Statistiques de la veille'
   },
@@ -102,6 +99,9 @@ Highcharts.chart('container360', {
     plotShadow: false,
     type: 'pie'
   },
+	credits: {
+ enabled: false
+},
   title: {
     text: 'Répartition du fonctionnement de la veille'
   },
