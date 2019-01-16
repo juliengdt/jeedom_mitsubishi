@@ -15,11 +15,13 @@ if (!isConnect('admin')) {
 // Create the chart
 Highcharts.chart('containerPlot', {
   chart: {
-    type: 'column'
+    type: 'column',
+		backgroundColor:'rgba(255, 255, 255, 0.0)'
   },
        credits: {
       enabled: false
    },
+	 exporting: { enabled: false },
   title: {
     text: 'Statistiques de la veille'
   },
@@ -97,11 +99,13 @@ Highcharts.chart('container360', {
     plotBackgroundColor: null,
     plotBorderWidth: null,
     plotShadow: false,
-    type: 'pie'
+    type: 'pie',
+		backgroundColor:'rgba(255, 255, 255, 0.0)'
   },
 	credits: {
  enabled: false
 },
+exporting: { enabled: false },
   title: {
     text: 'Répartition du fonctionnement de la veille'
   },
