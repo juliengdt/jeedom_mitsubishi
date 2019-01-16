@@ -35,7 +35,7 @@
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon jeedom2-fdp1-signal#notOfflineValue#" style="font-size: 2em;"></i></center>
 					</div>
 					<div style="display: table-cell; width: 50%;cursor:default;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Stats">
-	    			<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon techno-courbes" style="font-size: 2em;"></i></center>
+	    			<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="icon techno-courbes" style="font-size: 2em;" id="stats"></i></center>
 					</div>
 				</div>
 			</div>
@@ -52,3 +52,12 @@
 		</center>
 	</div>
 </div>
+
+<script>
+$('#stats').on('click', function() {
+			$('#md_modal2').dialog({
+				title: "Votre Vigilance"
+			});
+			$('#md_modal2').load('index.php?v=d&plugin=mitsubishi&modal=stats').dialog('open');
+		});
+</script>
