@@ -382,9 +382,9 @@ class mitsubishi extends eqLogic {
     if ($this->getConfiguration('SubType') == 'waterECS') {
       $replace['#isRunning#'] = ($replace['#IdleECS#'] == 0) ? "fa-sun" : "fa-times-circle";
       $replace['#EcoHotWater#'] = ($replace['#EcoHotWater#'] == 1) ? "Eco" : "Normal";
-      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'OnECS_id');
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'OnECS');
       $replace['#OnECS_id#'] = $cmd->getId();
-      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'OffECS_id');
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'OffECS');
       $replace['#OffECS_id#'] = $cmd->getId();
     }
     if ($this->getConfiguration('SubType') == 'waterZone1') {
