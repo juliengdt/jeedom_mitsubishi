@@ -130,7 +130,7 @@ Highcharts.chart('container360', {
 		$ModeHotWater = $cmd->execCmd();
 		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModeHeating');
 		$ModeHeating = $cmd->execCmd();
-		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'LegionellaPrevention');
+		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModeLegionellaPrevention');
 		$LegionellaPrevention = $cmd->execCmd();
 		$cmd = mitsubishiCmd::byEqLogicIdAndLogicalId(init(id),'ModePowerOff');
 		$ModePowerOff = $cmd->execCmd();
