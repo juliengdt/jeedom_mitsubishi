@@ -372,7 +372,7 @@ class mitsubishi extends eqLogic {
     }
     if ($this->getConfiguration('SubType') == 'water') {
       $replace['#notOfflineValue#'] = ($replace['#notOffline#'] == 1) ? "5":"0";
-      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-play" : "fa-stop";
+      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sun" : "fa-times-circle";
       if ($replace['#ErrorCode#'] != 0) {
         $replace['#background-color#'] = "red";
       } else {
@@ -380,7 +380,8 @@ class mitsubishi extends eqLogic {
       }
     }
     if ($this->getConfiguration('SubType') == 'waterECS') {
-      $replace['#isRunning#'] = ($replace['#IdleECS#'] == 1) ? "fa-play" : "fa-stop";
+      $replace['#isRunning#'] = ($replace['#IdleECS#'] == 1) ? "fa-sun" : "fa-times-circle";
+      $replace['#EcoHotWater#'] = ($replace['#EcoHotWater#'] == 1) ? "Eco" : "Normal";
       if ($replace['#ErrorCode#'] != 0) {
         $replace['#background-color#'] = "red";
       } else {
@@ -397,7 +398,7 @@ class mitsubishi extends eqLogic {
         $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone1');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
-      $replace['#isRunning#'] = ($replace['#IdleZone1#'] == 1) ? "fa-play" : "fa-stop";
+      $replace['#isRunning#'] = ($replace['#IdleZone1#'] == 1) ? "fa-sun" : "fa-times-circle";
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone1#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone1#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone1#'];
@@ -414,7 +415,7 @@ class mitsubishi extends eqLogic {
         $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperatureZone2');
         $replace['#actionSetTemperatureZone_id#'] = $cmd->getId();
       }
-      $replace['#isRunning#'] = ($replace['#IdleZone2#'] == 1) ? "fa-play" : "fa-stop";
+      $replace['#isRunning#'] = ($replace['#IdleZone2#'] == 1) ? "fa-sun" : "fa-times-circle";
       $replace['#FlowTemperatureZone#'] = $replace['#FlowTemperatureZone2#'];
       $replace['#ReturnTemperatureZone#'] = $replace['#ReturnTemperatureZone2#'];
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
