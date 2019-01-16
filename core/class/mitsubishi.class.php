@@ -191,11 +191,11 @@ class mitsubishi extends eqLogic {
     $post="{\"DeviceId\":" . $this->getConfiguration('DeviceID') . ",\"FromDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"ToDate\":\"" . date('Y-m-d', strtotime("1 day ago" )) . "T00:00:00\",\"UseCurrency\":false}";
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/EnergyCost/Report',$headers,$post);
     log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
-    $this->checkAndUpdateCmd('HotWater', $json['HotWater'][0]);
-    $this->checkAndUpdateCmd('Heating', $json['Heating'][0]);
-    $this->checkAndUpdateCmd('ProducedHotWater', $json['ProducedHotWater'][0]);
-    $this->checkAndUpdateCmd('ProducedHeating', $json['ProducedHeating'][0]);
-    $this->checkAndUpdateCmd('CoP', $json['CoP'][0]);
+    $this->checkAndUpdateCmd('HotWater', round($json['HotWater'][0],2));
+    $this->checkAndUpdateCmd('Heating', round($json['Heating'][0],2));
+    $this->checkAndUpdateCmd('ProducedHotWater', round($json['ProducedHotWater'][0],2));
+    $this->checkAndUpdateCmd('ProducedHeating', round($json['ProducedHeating'][0],2));
+    $this->checkAndUpdateCmd('CoP', round($json['CoP'][0],2));
   }
 
   public function getMode() {
@@ -206,7 +206,7 @@ class mitsubishi extends eqLogic {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Report/GetOperationModeLog2',$headers,$post);
     log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
     foreach ($json as $array) {
-      $value = floatval($array['Value'])*100;
+      $value = round(floatval($array['Value'])*100,2);
       switch ($array['Key']) {
         case 'Stop':
         $this->checkAndUpdateCmd('ModeStop', $value);

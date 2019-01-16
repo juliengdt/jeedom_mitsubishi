@@ -74,7 +74,7 @@ Highcharts.chart('containerPlot', {
 echo '
 				{
 					"name": "Eau Chaude énergie consommée",
-					"y": ' . $HotWater ',
+					"y": ' . $HotWater . ',
 				},
 				{
 					"name": "Eau Chaude énergie produite",
