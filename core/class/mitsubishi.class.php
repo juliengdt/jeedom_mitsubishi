@@ -367,12 +367,13 @@ class mitsubishi extends eqLogic {
         $replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
       }
     }
-    if (($this->getConfiguration('SubType') == 'water') && ($replace['#notOffline#'] == 1)) {
-      $replace['#notOfflineValue#'] = "5";
-      $replace['#isRunning#'] = "fa-sync fa-spin";
-    } else {
-      $replace['#notOfflineValue#'] = "0";
-      $replace['#isRunning#'] = "fa-times";
+    if ($this->getConfiguration('SubType') == 'water') {
+      $replace['#notOfflineValue#'] = ($replace['#notOffline#'] == 1) ? "5":"0";
+      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sync fa-spin" : "fa-times";
+      if ($replace['#ErrorCode#'] != 0) {
+        $replace['#background-color#'] = "red";
+      }
+      $replace['#background-color#'] = "red";
     }
     if ($this->getConfiguration('SubType') == 'waterZone1') {
       if ($replace['#OperationModeZone1#'] == 1) {
