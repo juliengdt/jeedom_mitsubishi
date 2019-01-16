@@ -123,7 +123,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('OperationModeZone1', $device['Device']['OperationModeZone1']);
             $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
-            $mitsubishi->checkAndUpdateCmd('IdleZone1',$device['Device']['IdleZone1']);
+            $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
+            $mitsubishi->checkAndUpdateCmd('IdleZone1',$idle);
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone1',$device['Device']['SetHeatFlowTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone1',$device['Device']['FlowTemperatureZone1']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone1',$device['Device']['ReturnTemperatureZone1']);
@@ -147,7 +148,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('OperationModeZone2', $device['Device']['OperationModeZone2']);
             $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
-            $mitsubishi->checkAndUpdateCmd('IdleZone2',$device['Device']['IdleZone2']);
+            $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
+            $mitsubishi->checkAndUpdateCmd('IdleZone2',$idle);
             $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone2',$device['Device']['SetHeatFlowTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone2',$device['Device']['FlowTemperatureZone2']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone2',$device['Device']['ReturnTemperatureZone2']);
@@ -173,7 +175,8 @@ class mitsubishi extends eqLogic {
             $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
             $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
             $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
-            $mitsubishi->checkAndUpdateCmd('IdleECS',$device['Device']['OperationMode']);
+            $idle = ($device['Device']['OperationMode'] != 1) ? 1 : 0;
+            $mitsubishi->checkAndUpdateCmd('IdleECS',$idle);
           }
 
         }
