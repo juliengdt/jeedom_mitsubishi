@@ -129,6 +129,38 @@
       "logicalId": "Auto"
     },
     {
+                "name": "Mode Select",
+                "type": "action",
+                "subtype": "select",
+                "display": {
+                    "generic_type": "DONT"
+                },
+                "configuration" : {
+                  "option" : "select",
+                  "flag" : "OperationMode",
+                  "idflag" : 6,
+                    "listValue" : "1|Chaud;2|Séchage;3|Froid;7|Ventile;8|Auto"
+                },
+                "isVisible": 1,
+                "logicalId": "selectOperationMode"
+},
+{
+            "name": "Ventilateur Select",
+            "type": "action",
+            "subtype": "select",
+            "display": {
+                "generic_type": "DONT"
+            },
+            "configuration" : {
+              "option" : "select",
+              "flag" : "SetFanSpeed",
+              "idflag" : 8,
+                "listValue" : "0|0;1|1;2|2;3|3;4|4;5|5"
+            },
+            "isVisible": 1,
+            "logicalId": "selectSetFanSpeed"
+},
+    {
       "name": "Consigne",
       "type": "info",
       "subtype": "numeric",

@@ -30,7 +30,7 @@
 
 					</div>
 					</div>
-					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em; text-align:center; vertical-align: middle;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Circuit">
+					<div style="display: table-cell; width: 25%;cursor:default;font-size: 1em; text-align:center; vertical-align: middle;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Alimentation">
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-sun" id="on#On_id#"></i> ON</center>
 						<center class="cmd noRefresh" data-type="info" data-subtype="string" style="font-size: 0.9em;"><i class="fa fa-times-circle" id="on#Off_id#"></i> OFF</center>
 					</div>
@@ -40,7 +40,7 @@
 			<div style="display: table; overflow: hidden; width: 95%; text-align:center; vertical-align: middle;">
 				<div style="display: table-row;">
 					<div style="display: table-cell; width: 50%;cursor:default; text-align:center;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Mode">
-						<center><select id="mode#selectOperationMode_id#">
+						<center>Mode <select id="mode#selectOperationMode_id#">
 							<option value="8">{{Auto}}</option>
 							<option value="7">{{Ventile}}</option>
 							<option value="3">{{Froid}}</option>
@@ -49,13 +49,13 @@
 						</select></center>
 					</div>
 					<div style="display: table-cell; width: 50%;cursor:default; text-align:center;font-size: 1em;" class="cmd noRefresh" data-type="info" data-subtype="string" title="Ventilateur">
-						<center><select id="mode#selectActualFanSpeed_id#">
-							<option value="5">5</option>
-							<option value="4">4</option>
-							<option value="3">3</option>
-							<option value="2">2</option>
-							<option value="1">1</option>
-							<option value="0">0</option>
+						<center> Ventilateur <select id="mode#selectSetFanSpeed_id#">
+							<option value="5">  5  </option>
+							<option value="4">  4  </option>
+							<option value="3">  3  </option>
+							<option value="2">  2  </option>
+							<option value="1">  1  </option>
+							<option value="0">  0  </option>
 						</select></center>
 					</div>
 				</div>
@@ -114,10 +114,10 @@
 				});
 	});
 
-	$('#mode#selectActualFanSpeed_id#').on('select', function () {
+	$('#mode#selectSetFanSpeed_id#').on('select', function () {
 		jeedom.cmd.execute({
-			id: '#selectActualFanSpeed_id#',
-			value: { select: parseFloat( $('#mode#selectActualFanSpeed_id#').text() ) }
+			id: '#selectSetFanSpeed_id#',
+			value: { select: parseFloat( $('#mode#selectSetFanSpeed_id#').text() ) }
 				});
 	});
 </script>
