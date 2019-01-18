@@ -431,6 +431,12 @@ class mitsubishi extends eqLogic {
     if ($this->getConfiguration('SubType') == 'air') {
       $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperature');
       $replace['#actionSetTemperature_id#'] = $cmd->getId();
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'On');
+      $replace['#On_id#'] = $cmd->getId();
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'Off');
+      $replace['#Off_id#'] = $cmd->getId();
+      //#selectOperationMode_id#
+      //selectActualFanSpeed_id
       $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sun" : "fa-times-circle";
       $template = "air";
     }
