@@ -69,6 +69,7 @@ class mitsubishi extends eqLogic {
             $mitsubishi->loadCmdFromConf('air');
             $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
             $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
+            $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
             $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
             $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
             $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
@@ -426,6 +427,12 @@ class mitsubishi extends eqLogic {
       $replace['#RoomTemperatureZone#'] = $replace['#RoomTemperatureZone2#'];
       $replace['#OperationModeZoneText#'] = $replace['#OperationModeZone2Text#'];
       $template = "waterZone";
+    }
+    if ($this->getConfiguration('SubType') == 'air') {
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'actionSetTemperature');
+      $replace['#actionSetTemperature_id#'] = $cmd->getId();
+      $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sun" : "fa-times-circle";
+      $template = "air";
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $template, 'mitsubishi')));
   }

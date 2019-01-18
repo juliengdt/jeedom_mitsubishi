@@ -129,6 +129,17 @@
       "logicalId": "Auto"
     },
     {
+      "name": "Consigne",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "unite": "°C",
+      "isVisible": 1,
+      "logicalId": "SetTemperature"
+    },
+    {
       "name": "Set Consigne",
       "type": "action",
       "subtype": "slider",
@@ -163,7 +174,7 @@
       },
       "value": "Vitesse Ventilateur",
       "isVisible": 1,
-      "logicalId": "FanSpeed"
+      "logicalId": "actionSetFanSpeed"
     },
     {
       "name": "Vitesse Ventilateur",
@@ -189,6 +200,7 @@
       },
       "isVisible": 1,
       "isHistorized": 0,
+      "unite": "°C",
       "logicalId": "RoomTemperature",
       "template": {
         "dashboard": "line",
