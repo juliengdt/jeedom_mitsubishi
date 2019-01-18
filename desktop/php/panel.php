@@ -11,7 +11,7 @@ if (!isConnect()) {
   <div class="col-md-6">
     <div class="div_displayEquipement">
       <?php
-      foreach (eqLogic::byType('mitsubishi') as $eqLogic) {
+      foreach (eqLogic::byType('mitsubishi',true) as $eqLogic) {
         echo $eqLogic->toHtml('dview');
       }
       ?>

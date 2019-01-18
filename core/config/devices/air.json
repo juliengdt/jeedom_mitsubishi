@@ -155,7 +155,7 @@
         "maxValue" : 30
       },
       "isVisible": 1,
-      "logicalId": "SetTemperature"
+      "logicalId": "actionSetTemperature"
     },
     {
       "name": "Set Ventilation",
