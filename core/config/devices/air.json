@@ -53,7 +53,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon nature-soleil\"><\/i>",
+        "icon": "<i class=\"icon nature-fire14\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
