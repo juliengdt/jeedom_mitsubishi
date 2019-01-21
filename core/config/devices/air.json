@@ -155,7 +155,7 @@
               "option" : "select",
               "flag" : "SetFanSpeed",
               "idflag" : 8,
-                "listValue" : "0|0;1|1;2|2;3|3;4|4;5|5"
+                "listValue" : "0|0;1|1;2|2;3|3"
             },
             "isVisible": 1,
             "logicalId": "selectSetFanSpeed"
@@ -202,7 +202,7 @@
         "flag" : "SetFanSpeed",
         "idflag" : 8,
         "minValue" : 0,
-        "maxValue" : 5
+        "maxValue" : 3
       },
       "value": "Vitesse Ventilateur",
       "isVisible": 1,
