@@ -438,6 +438,12 @@ class mitsubishi extends eqLogic {
       $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'selectSetFanSpeed');
       $replace['#selectSetFanSpeed_id#'] = $cmd->getId();
       $replace['#isRunning#'] = ($replace['#Power#'] == 1) ? "fa-sun" : "fa-times-circle";
+      $replace['#OperationMode1#'] = $replace['#OperationMode2#'] = $replace['#OperationMode3#'] = $replace['#OperationMode7#'] = $replace['#OperationMode8'] = '';
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'OperationMode');
+      $replace['#OperationMode'. $cmd->execCmd() . '#'] = ' selected';
+      $replace['#ActualFanSpeed0#'] = $replace['#ActualFanSpeed1#'] = $replace['#ActualFanSpeed2#'] = $replace['#ActualFanSpeed3'] = '';
+      $cmd = mitsubishiCmd::byEqLogicIdAndLogicalId($this->getId(),'ActualFanSpeed');
+      $replace['#ActualFanSpeed'. $cmd->execCmd() . '#'] = ' selected';
       $template = "air";
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $template, 'mitsubishi')));
