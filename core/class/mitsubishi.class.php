@@ -36,151 +36,159 @@ class mitsubishi extends eqLogic {
       }
     }
   }
-
+  
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
     //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
     foreach ($json as $building) {
-      foreach ($json as $building) {
-        foreach ($building['Structure']['Devices'] as $device) {
-          log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
-          if ($device['Device']['DeviceType'] == 0) {
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID']);
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName']);
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'air');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('air');
-            $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
-            $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
-            $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
-            $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
-            $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
-            $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
-            $mitsubishi->refreshWidget();
-          } else {
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID']);
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName']);
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'water');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('water');
-            $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
-            $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
-            $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
-            $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
-            $mitsubishi->checkAndUpdateCmd('FlowTemperature',$device['Device']['FlowTemperature']);
-            $mitsubishi->checkAndUpdateCmd('ReturnTemperature',$device['Device']['ReturnTemperature']);
-            if ($device['Device']['HasError']) {
-              $device2 = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $mitsubishi->getConfiguration('DeviceID') . '&buildingID=' . $mitsubishi->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
-              $mitsubishi->checkAndUpdateCmd('ErrorMessage',$device2['ErrorMessage']);
-              $mitsubishi->checkAndUpdateCmd('ErrorCode',$device2['ErrorCode']);
-              log::add('mitsubishi', 'error', 'Erreur ' . $device2['ErrorCode'] . ' ' . $device2['ErrorMessage'] . ' sur ' . $mitsubishi->getConfiguration('DeviceID'));
-            } else {
-              $mitsubishi->checkAndUpdateCmd('ErrorMessage','aucun');
-              $mitsubishi->checkAndUpdateCmd('ErrorCode',0);
-            }
-            $mitsubishi->refreshWidget();
-
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1', 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1');
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName'] . 'Zone1');
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'waterZone1');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('waterZone1');
-            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
-            $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
-            $mitsubishi->checkAndUpdateCmd('OperationModeZone1', $device['Device']['OperationModeZone1']);
-            $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
-            $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
-            $mitsubishi->checkAndUpdateCmd('IdleZone1',$idle);
-            $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone1',$device['Device']['SetHeatFlowTemperatureZone1']);
-            $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone1',$device['Device']['FlowTemperatureZone1']);
-            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone1',$device['Device']['ReturnTemperatureZone1']);
-            $mitsubishi->refreshWidget();
-
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2', 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2');
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName'] . 'Zone2');
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'waterZone2');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('waterZone2');
-            $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
-            $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
-            $mitsubishi->checkAndUpdateCmd('OperationModeZone2', $device['Device']['OperationModeZone2']);
-            $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
-            $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
-            $mitsubishi->checkAndUpdateCmd('IdleZone2',$idle);
-            $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone2',$device['Device']['SetHeatFlowTemperatureZone2']);
-            $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone2',$device['Device']['FlowTemperatureZone2']);
-            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone2',$device['Device']['ReturnTemperatureZone2']);
-            $mitsubishi->refreshWidget();
-
-            $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
-            if (!is_object($mitsubishi)) {
-              $mitsubishi = new mitsubishi();
-              $mitsubishi->setEqType_name('mitsubishi');
-              $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS');
-              $mitsubishi->setIsEnable(1);
-              $mitsubishi->setIsVisible(1);
-              $mitsubishi->setName($device['DeviceName'] . 'ECS');
-              $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
-              $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
-              $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
-              $mitsubishi->setConfiguration('SubType', 'waterECS');
-              $mitsubishi->save();
-            }
-            $mitsubishi->loadCmdFromConf('waterECS');
-            $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
-            $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
-            $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
-            $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
-            $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
-            $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
-            $idle = ($device['Device']['OperationMode'] != 1) ? 1 : 0;
-            $mitsubishi->checkAndUpdateCmd('IdleECS',$idle);
-            $mitsubishi->refreshWidget();
-          }
-
+      foreach ($building['Structure']['Devices'] as $device) {
+        //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+        mitsubishi::refreshDevice($device);
+      }
+      foreach ($building['Structure']['Floor'] as $floor) {
+        foreach ($floor['Devices'] as $device) {
+          //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+          mitsubishi::refreshDevice($device);
         }
       }
     }
+  }
+
+  public static function refreshDevice($device) {
+  log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+  if ($device['Device']['DeviceType'] == 0) {
+    $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
+    if (!is_object($mitsubishi)) {
+      $mitsubishi = new mitsubishi();
+      $mitsubishi->setEqType_name('mitsubishi');
+      $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID']);
+      $mitsubishi->setIsEnable(1);
+      $mitsubishi->setIsVisible(1);
+      $mitsubishi->setName($device['DeviceName']);
+      $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+      $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+      $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+      $mitsubishi->setConfiguration('SubType', 'air');
+      $mitsubishi->save();
+    }
+    $mitsubishi->loadCmdFromConf('air');
+    $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
+    $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
+    $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
+    $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
+    $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
+    $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
+    $mitsubishi->refreshWidget();
+  } else {
+    $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
+    if (!is_object($mitsubishi)) {
+      $mitsubishi = new mitsubishi();
+      $mitsubishi->setEqType_name('mitsubishi');
+      $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID']);
+      $mitsubishi->setIsEnable(1);
+      $mitsubishi->setIsVisible(1);
+      $mitsubishi->setName($device['DeviceName']);
+      $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+      $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+      $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+      $mitsubishi->setConfiguration('SubType', 'water');
+      $mitsubishi->save();
+    }
+    $mitsubishi->loadCmdFromConf('water');
+    $mitsubishi->checkAndUpdateCmd('OutdoorTemperature', $device['Device']['OutdoorTemperature']);
+    $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
+    $mitsubishi->checkAndUpdateCmd('HolidayMode',$device['Device']['HolidayMode']);
+    $mitsubishi->checkAndUpdateCmd('notOffline',!$device['Device']['Offline']);
+    $mitsubishi->checkAndUpdateCmd('FlowTemperature',$device['Device']['FlowTemperature']);
+    $mitsubishi->checkAndUpdateCmd('ReturnTemperature',$device['Device']['ReturnTemperature']);
+    if ($device['Device']['HasError']) {
+      $device2 = mitsubishi::callMelcloud('https://app.melcloud.com/Mitsubishi.Wifi.Client/Device/Get?id=' . $mitsubishi->getConfiguration('DeviceID') . '&buildingID=' . $mitsubishi->getConfiguration('BuildingID'),array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
+      $mitsubishi->checkAndUpdateCmd('ErrorMessage',$device2['ErrorMessage']);
+      $mitsubishi->checkAndUpdateCmd('ErrorCode',$device2['ErrorCode']);
+      log::add('mitsubishi', 'error', 'Erreur ' . $device2['ErrorCode'] . ' ' . $device2['ErrorMessage'] . ' sur ' . $mitsubishi->getConfiguration('DeviceID'));
+    } else {
+      $mitsubishi->checkAndUpdateCmd('ErrorMessage','aucun');
+      $mitsubishi->checkAndUpdateCmd('ErrorCode',0);
+    }
+    $mitsubishi->refreshWidget();
+
+    $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1', 'mitsubishi');
+    if (!is_object($mitsubishi)) {
+      $mitsubishi = new mitsubishi();
+      $mitsubishi->setEqType_name('mitsubishi');
+      $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone1');
+      $mitsubishi->setIsEnable(1);
+      $mitsubishi->setIsVisible(1);
+      $mitsubishi->setName($device['DeviceName'] . 'Zone1');
+      $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+      $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+      $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+      $mitsubishi->setConfiguration('SubType', 'waterZone1');
+      $mitsubishi->save();
+    }
+    $mitsubishi->loadCmdFromConf('waterZone1');
+    $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone1', $device['Device']['RoomTemperatureZone1']);
+    $mitsubishi->checkAndUpdateCmd('SetTemperatureZone1', $device['Device']['SetTemperatureZone1']);
+    $mitsubishi->checkAndUpdateCmd('OperationModeZone1', $device['Device']['OperationModeZone1']);
+    $mitsubishi->updateOperationModeZone('OperationModeZone1',$device['Device']['OperationModeZone1']);
+    $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
+    $mitsubishi->checkAndUpdateCmd('IdleZone1',$idle);
+    $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone1',$device['Device']['SetHeatFlowTemperatureZone1']);
+    $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone1',$device['Device']['FlowTemperatureZone1']);
+    $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone1',$device['Device']['ReturnTemperatureZone1']);
+    $mitsubishi->refreshWidget();
+
+    $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2', 'mitsubishi');
+    if (!is_object($mitsubishi)) {
+      $mitsubishi = new mitsubishi();
+      $mitsubishi->setEqType_name('mitsubishi');
+      $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'Zone2');
+      $mitsubishi->setIsEnable(1);
+      $mitsubishi->setIsVisible(1);
+      $mitsubishi->setName($device['DeviceName'] . 'Zone2');
+      $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+      $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+      $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+      $mitsubishi->setConfiguration('SubType', 'waterZone2');
+      $mitsubishi->save();
+    }
+    $mitsubishi->loadCmdFromConf('waterZone2');
+    $mitsubishi->checkAndUpdateCmd('RoomTemperatureZone2', $device['Device']['RoomTemperatureZone2']);
+    $mitsubishi->checkAndUpdateCmd('SetTemperatureZone2', $device['Device']['SetTemperatureZone2']);
+    $mitsubishi->checkAndUpdateCmd('OperationModeZone2', $device['Device']['OperationModeZone2']);
+    $mitsubishi->updateOperationModeZone('OperationModeZone2',$device['Device']['OperationModeZone2']);
+    $idle = ($device['Device']['OperationMode'] != 2) ? 1 : 0;
+    $mitsubishi->checkAndUpdateCmd('IdleZone2',$idle);
+    $mitsubishi->checkAndUpdateCmd('SetHeatFlowTemperatureZone2',$device['Device']['SetHeatFlowTemperatureZone2']);
+    $mitsubishi->checkAndUpdateCmd('FlowTemperatureZone2',$device['Device']['FlowTemperatureZone2']);
+    $mitsubishi->checkAndUpdateCmd('ReturnTemperatureZone2',$device['Device']['ReturnTemperatureZone2']);
+    $mitsubishi->refreshWidget();
+
+    $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS', 'mitsubishi');
+    if (!is_object($mitsubishi)) {
+      $mitsubishi = new mitsubishi();
+      $mitsubishi->setEqType_name('mitsubishi');
+      $mitsubishi->setLogicalId($device['BuildingID'] . $device['DeviceID'] . 'ECS');
+      $mitsubishi->setIsEnable(1);
+      $mitsubishi->setIsVisible(1);
+      $mitsubishi->setName($device['DeviceName'] . 'ECS');
+      $mitsubishi->setConfiguration('DeviceID', $device['DeviceID']);
+      $mitsubishi->setConfiguration('BuildingID', $device['BuildingID']);
+      $mitsubishi->setConfiguration('DeviceType', $device['Device']['DeviceType']);//0 air/air, 1 air/water
+      $mitsubishi->setConfiguration('SubType', 'waterECS');
+      $mitsubishi->save();
+    }
+    $mitsubishi->loadCmdFromConf('waterECS');
+    $mitsubishi->checkAndUpdateCmd('TankWaterTemperature', $device['Device']['TankWaterTemperature']);
+    $mitsubishi->checkAndUpdateCmd('SetTankWaterTemperature', $device['Device']['SetTankWaterTemperature']);
+    $mitsubishi->checkAndUpdateCmd('ForcedHotWaterMode', $device['Device']['ForcedHotWaterMode']);
+    $mitsubishi->checkAndUpdateCmd('EcoHotWater', $device['Device']['EcoHotWater']);
+    $mitsubishi->checkAndUpdateCmd('FlowTemperatureBoiler',$device['Device']['FlowTemperatureBoiler']);
+    $mitsubishi->checkAndUpdateCmd('ReturnTemperatureBoiler',$device['Device']['ReturnTemperatureBoiler']);
+    $idle = ($device['Device']['OperationMode'] != 1) ? 1 : 0;
+    $mitsubishi->checkAndUpdateCmd('IdleECS',$idle);
+    $mitsubishi->refreshWidget();
+  }
   }
 
   public function getConso() {
