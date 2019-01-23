@@ -45,7 +45,7 @@ class mitsubishi extends eqLogic {
         //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
         mitsubishi::refreshDevice($device);
       }
-      foreach ($building['Structure']['Floor'] as $floor) {
+      foreach ($building['Structure']['Floors'] as $floor) {
         foreach ($floor['Devices'] as $device) {
           //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
           mitsubishi::refreshDevice($device);
