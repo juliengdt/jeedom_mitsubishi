@@ -6,7 +6,7 @@ if (!isConnect()) {
 
 <div class="row">
 
-<div class="col-md-12"><i class="fa fa-pencil pull-right cursor reportModeHidden" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;margin-top:7px;"></i>
+<div class="col-md-12"><i class="fas fa-pencil pull-right cursor reportModeHidden" id="bt_editDashboardWidgetOrder" data-mode="0" style="margin-right : 10px;margin-top:7px;"></i>
 
   <div class="col-md-6">
     <div class="div_displayEquipement">

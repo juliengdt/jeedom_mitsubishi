@@ -69,7 +69,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"fa fa-lightbulb-o\"><\/i>",
+        "icon": "<i class=\"fas fa-lightbulb-o\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -86,7 +86,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"fa fa-power-off\"><\/i>",
+        "icon": "<i class=\"fas fa-power-off\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
