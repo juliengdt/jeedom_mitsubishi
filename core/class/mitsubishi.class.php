@@ -20,8 +20,6 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 
 class mitsubishi extends eqLogic {
-  public static $_widgetPossibility = array('custom' => true);
-
   public static function cron5() {
     mitsubishi::refreshAll();
   }
@@ -36,7 +34,7 @@ class mitsubishi extends eqLogic {
       }
     }
   }
-  
+
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
     //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
@@ -366,7 +364,7 @@ class mitsubishi extends eqLogic {
     }
   }
 
-  public function toHtml($_version = 'dashboard') {
+  /*public function toHtml($_version = 'dashboard') {
     $replace = $this->preToHtml($_version);
     if (!is_array($replace)) {
       return $replace;
@@ -455,7 +453,7 @@ class mitsubishi extends eqLogic {
       $template = "air";
     }
     return $this->postToHtml($_version, template_replace($replace, getTemplate('core', $version, $template, 'mitsubishi')));
-  }
+  }*/
 
 }
 
