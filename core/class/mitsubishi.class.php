@@ -70,7 +70,7 @@ class mitsubishi extends eqLogic {
       $mitsubishi->save();
     }
     $mitsubishi->loadCmdFromConf('air');
-    $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['ActualFanSpeed']);
+    $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['SetFanSpeed']);
     $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
     $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
     $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
