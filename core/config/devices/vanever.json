@@ -1,0 +1,51 @@
+{
+  "name": "vanever",
+  "commands": [
+    {
+      "name": "Mode Select Vertical",
+      "type": "action",
+      "subtype": "select",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "configuration" : {
+        "option" : "select",
+        "flag" : "VaneVertical",
+        "idflag" : 6,
+        "listValue" : "1|1;2|2;3|3;4|4;5|5;6|6;7|7"
+      },
+      "isVisible": 1,
+      "logicalId": "selectVaneVertical"
+    },
+    {
+      "name": "Mode Vertical",
+      "type": "info",
+      "subtype": "numeric",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "VaneVertical",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
+      "name": "Mode Texte Vertical",
+      "type": "info",
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 1,
+      "isHistorized": 0,
+      "logicalId": "VaneVerticalText",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    }
+  ]
+}

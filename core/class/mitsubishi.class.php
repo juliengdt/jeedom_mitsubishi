@@ -70,12 +70,33 @@ class mitsubishi extends eqLogic {
       $mitsubishi->save();
     }
     $mitsubishi->loadCmdFromConf('air');
-    $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['SetFanSpeed']);
+    $a = 1;
+    $select = '1|1';
+    while ($a < $device['Device']['NumberOfFanSpeeds']) {
+      $a++;
+      $select .= ';' . $a . '|' . $a;
+    }
+    $cmdlogic = mitsubishiCmd::byEqLogicIdAndLogicalId($mitsubishi->getId(),"selectSetFanSpeed");
+    if ($cmdlogic->getConfiguration('listValue') != $select) {
+      $cmdlogic->setConfiguration('listValue',$select);
+      $cmdlogic->save();
+    }
+    $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['FanSpeed']);
     $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
     $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
     $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
     $mitsubishi->updateOperationMode($device['Device']['OperationMode']);
     $mitsubishi->checkAndUpdateCmd('Power', $device['Device']['Power']);
+    if (isset($device['Device']['VaneHorizontalDirection'])) {
+      $mitsubishi->loadCmdFromConf('vanehor');
+      $mitsubishi->checkAndUpdateCmd('VaneHorizontal', $device['Device']['VaneHorizontalDirection']);
+      $mitsubishi->updateVaneHorizontal($device['Device']['VaneHorizontalDirection']);
+    }
+    if (isset($device['Device']['VaneVerticalDirection'])) {
+      $mitsubishi->loadCmdFromConf('vanever');
+      $mitsubishi->checkAndUpdateCmd('VaneVertical', $device['Device']['VaneVerticalDirection']);
+      $mitsubishi->updateVaneVertical($device['Device']['VaneVerticalDirection']);
+    }
     $mitsubishi->refreshWidget();
   } else {
     $mitsubishi=mitsubishi::byLogicalId($device['BuildingID'] . $device['DeviceID'], 'mitsubishi');
@@ -317,6 +338,32 @@ class mitsubishi extends eqLogic {
       break;
     }
     $this->checkAndUpdateCmd('OperationModeText', $value);
+  }
+
+  public function updateVaneHorizontal($_option){
+    $value = $_option;
+    switch ($_option){
+      case 7:
+      $value = 'Bascule';
+      break;
+      case 6:
+      $value = 'Auto';
+      break;
+    }
+    $this->checkAndUpdateCmd('VaneHorizontalText', $value);
+  }
+
+  public function updateVaneVertical($_option){
+    $value = $_option;
+    switch ($_option){
+      case 7:
+      $value = 'Bascule';
+      break;
+      case 6:
+      $value = 'Auto';
+      break;
+    }
+    $this->checkAndUpdateCmd('VaneVerticalText', $value);
   }
 
   public function updateOperationModeZone($_zone,$_option){
