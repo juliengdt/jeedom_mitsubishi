@@ -81,6 +81,11 @@ class mitsubishi extends eqLogic {
       $cmdlogic->setConfiguration('listValue',$select);
       $cmdlogic->save();
     }
+    $cmdlogic = mitsubishiCmd::byEqLogicIdAndLogicalId($mitsubishi->getId(),"actionSetFanSpeed");
+    if ($cmdlogic->getConfiguration('maxValue') != $device['Device']['NumberOfFanSpeeds']) {
+      $cmdlogic->setConfiguration('maxValue',$device['Device']['NumberOfFanSpeeds']);
+      $cmdlogic->save();
+    }
     $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['FanSpeed']);
     $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
     $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
