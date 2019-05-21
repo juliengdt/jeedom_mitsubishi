@@ -201,7 +201,7 @@
         "option" : "slider",
         "flag" : "SetFanSpeed",
         "idflag" : 8,
-        "minValue" : 0,
+        "minValue" : 1,
         "maxValue" : 3
       },
       "value": "Vitesse Ventilateur",
