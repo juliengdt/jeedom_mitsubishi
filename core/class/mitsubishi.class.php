@@ -71,7 +71,7 @@ class mitsubishi extends eqLogic {
     }
     $mitsubishi->loadCmdFromConf('air');
     $a = 1;
-    $select = '1|1';
+    $select = '0|0;1|1';
     while ($a < $device['Device']['NumberOfFanSpeeds']) {
       $a++;
       $select .= ';' . $a . '|' . $a;
