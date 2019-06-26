@@ -37,7 +37,7 @@ class mitsubishi extends eqLogic {
 
   public static function refreshAll() {
     $json = mitsubishi::callMelcloud('https://app.melcloud.com/mitsubishi.Wifi.Client/User/ListDevices',array('X-MitsContextKey: ' . config::byKey('token', 'mitsubishi')),array());
-    //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
+    log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($json, true));
     foreach ($json as $building) {
       foreach ($building['Structure']['Devices'] as $device) {
         //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
