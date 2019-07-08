@@ -48,11 +48,11 @@ class mitsubishi extends eqLogic {
           //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
           mitsubishi::refreshDevice($device);
         }
-      }
-      foreach ($building['Structure']['Floors']['Areas'] as $area) {
-        foreach ($area['Devices'] as $device) {
-          //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
-          mitsubishi::refreshDevice($device);
+        foreach ($floor['Areas'] as $area) {
+          foreach ($area['Devices'] as $device) {
+            //log::add('mitsubishi', 'debug', 'Retrieve ' . print_r($device, true));
+            mitsubishi::refreshDevice($device);
+          }
         }
       }
     }
