@@ -44,13 +44,13 @@ function displaymitsubishi() {
                 $('#div_location').hide();
             }else{
                 $('#div_location').show();
-                $('#div_displayEquipementmitsubishi').empty();
+                $('#div_displayEquipement').empty();
                 for (var i in data.result) {
-                    $('#div_displayEquipementmitsubishi').append(data.result[i]).trigger('create');
+                    $('#div_displayEquipement').append(data.result[i]).trigger('create');
                 }
             }
             setTileSize('.eqLogic');
-            $('#div_displayEquipementmitsubishi').packery({gutter : 4});
+            $('#div_displayEquipement').packery({gutter : 4});
             $.hideLoading();
         }
     });
