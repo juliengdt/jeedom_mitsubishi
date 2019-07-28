@@ -14,15 +14,15 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 
-function initmitsubishiPanel() {
-    displaymitsubishi();
+function initMitsubishiPanel() {
+    displayMitsubishi();
     $(window).on("orientationchange", function (event) {
         setTileSize('.eqLogic');
         $('#div_displayEquipement').packery({gutter : 4});
     });
 }
 
-function displaymitsubishi() {
+function displayMitsubishi() {
     $.showLoading();
     $.ajax({
         type: 'POST',
