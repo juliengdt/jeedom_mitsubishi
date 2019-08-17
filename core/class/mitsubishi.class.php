@@ -277,6 +277,18 @@ class mitsubishi extends eqLogic {
 
   public static function getToken() {
     if (config::byKey('password', 'mitsubishi') != '' && config::byKey('mail', 'mitsubishi') != '') {
+      $lang = explode('_',config::byKey('language'));
+      switch ($lang){
+        case 'es':
+        $lg = 6;
+        break;
+        case 'en':
+        $lg = 0;
+        break;
+        default:
+        $lg = 7;
+        break;
+      }
       $ch = curl_init();
       curl_setopt($ch, CURLOPT_URL, "https://app.melcloud.com/Mitsubishi.Wifi.Client/Login/ClientLogin");
       curl_setopt($ch, CURLOPT_POST, 1);
