@@ -12,7 +12,7 @@
         "option" : "select",
         "flag" : "VaneHorizontal",
         "idflag" : 256,
-        "listValue" : "1|1;2|2;3|3;4|4;5|5;6|6;7|7"
+        "listValue" : "1|Gauche;2|Gauche-Milieu;3|Milieu;4|Droite-Milieu;5|Droite;0|Auto;12|Bascule"
       },
       "isVisible": 1,
       "value": "Mode Horizontal",

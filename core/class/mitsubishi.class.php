@@ -372,11 +372,26 @@ class mitsubishi extends eqLogic {
   public function updateVaneHorizontal($_option){
     $value = $_option;
     switch ($_option){
-      case 7:
+      case 12:
       $value = 'Bascule';
       break;
-      case 6:
+      case 0:
       $value = 'Auto';
+      break;
+      case 5:
+      $value = 'Droite';
+      break;
+      case 4:
+      $value = 'Droite-Milieu';
+      break;
+      case 3:
+      $value = 'Milieu';
+      break;
+      case 2:
+      $value = 'Gauche-Milieu';
+      break;
+      case 1:
+      $value = 'Gauche';
       break;
     }
     $this->checkAndUpdateCmd('VaneHorizontalText', $value);
@@ -390,6 +405,21 @@ class mitsubishi extends eqLogic {
       break;
       case 6:
       $value = 'Auto';
+      break;
+      case 5:
+      $value = 'Bas';
+      break;
+      case 4:
+      $value = 'Bas-Milieu';
+      break;
+      case 3:
+      $value = 'Milieu';
+      break;
+      case 2:
+      $value = 'Haut-Milieu';
+      break;
+      case 1:
+      $value = 'Haut';
       break;
     }
     $this->checkAndUpdateCmd('VaneVerticalText', $value);
