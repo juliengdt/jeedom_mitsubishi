@@ -139,7 +139,7 @@
         "option" : "select",
         "flag" : "OperationMode",
         "idflag" : 6,
-        "listValue" : "1|Chaud;2|Séchage;3|Froid;7|Ventile;8|Auto"
+        "listValue" : "1|<i class=\"icon nature-fire14\"><\/i> Chaud;2|<i class=\"icon jeedom-ventilo\"><\/i> Séchage;3|<i class=\"icon nature-snowflake\"><\/i> Froid;7|<i class=\"icon jeedom-ventilo\"><\/i> Ventile;8|<i class=\"icon fa-refresh\"><\/i> Auto"
       },
       "isVisible": 1,
       "logicalId": "selectOperationMode"
