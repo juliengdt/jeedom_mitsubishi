@@ -155,7 +155,7 @@
         "option" : "select",
         "flag" : "SetFanSpeed",
         "idflag" : 8,
-        "listValue" : "0|0;1|1;2|2;3|3"
+        "listValue" : "0|Auto;1|1;2|2;3|3"
       },
       "isVisible": 1,
       "logicalId": "selectSetFanSpeed"
