@@ -53,6 +53,40 @@
       "value": "Consigne"
     },
     {
+      "name": "Augmenter Consigne",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT",
+        "icon": "<i class=\"far fa-plus-square\"><\/i>"
+      },
+      "configuration" : {
+        "option" : "plus",
+        "flag" : "SetTemperatureZone1",
+        "idflag" : 8589934720
+      },
+      "isVisible": 1,
+      "logicalId": "plus",
+      "value": "Consigne"
+    },
+    {
+      "name": "Diminuer Consigne",
+      "type": "action",
+      "subtype": "other",
+      "display": {
+        "generic_type": "DONT",
+        "icon": "<i class=\"far fa-minus-square\"><\/i>"
+      },
+      "configuration" : {
+        "option" : "minus",
+        "flag" : "SetTemperatureZone1",
+        "idflag" : 8589934720
+      },
+      "isVisible": 1,
+      "logicalId": "minus",
+      "value": "Consigne"
+    },
+    {
       "name": "Consigne Mode Température Eau",
       "type": "info",
       "subtype": "numeric",
