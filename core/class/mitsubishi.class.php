@@ -573,7 +573,15 @@ class mitsubishiCmd extends cmd {
         } elseif ($this->getSubType() == 'select') {
             $option = $_options['select'];
         } else {
-          $option = $this->getConfiguration('option');
+          if ($this->getLogicalId() == 'minus') {
+            $cmd = cmd::byEqLogicIdAndLogicalId($Eqlogic->getId(),$this->getConfiguration('flag'));
+            $option = $cmd->execCmd() - 0.5;
+          } elseif ($this->getLogicalId() == 'plus') {
+            $cmd = cmd::byEqLogicIdAndLogicalId($Eqlogic->getId(),$this->getConfiguration('flag'));
+            $option = $cmd->execCmd() + 0.5;
+          } else {
+            $option = $this->getConfiguration('option');
+          }
         }
         log::add('mitsubishi', 'debug', 'Action ' . $option . ' ' . $this->getConfiguration('flag') . ' ' . $this->getConfiguration('idflag'));
         $Eqlogic->setModif($option,$this->getConfiguration('flag'),$this->getConfiguration('idflag'));
