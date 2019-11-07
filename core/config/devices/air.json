@@ -6,7 +6,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"fas fa-lightbulb-o\"><\/i>",
+        "icon": "<i class=\"fas fa-lightbulb\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -53,7 +53,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon nature-fire14\"><\/i>",
+        "icon": "<i class=\"fas fa-fire\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -69,7 +69,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon jeedom-ventilo\"><\/i>",
+        "icon": "<i class=\"fas fa-tint\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -85,7 +85,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon nature-snowflake\"><\/i>",
+        "icon": "<i class=\"fas fa-snowflake\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -101,7 +101,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon jeedom-ventilo\"><\/i>",
+        "icon": "<i class=\"fas fa-fan\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -117,7 +117,7 @@
       "type": "action",
       "subtype": "other",
       "display": {
-        "icon": "<i class=\"icon fa-refresh\"><\/i>",
+        "icon": "<i class=\"fas fa-sync\"><\/i>",
         "generic_type": "DONT"
       },
       "configuration" : {
@@ -139,7 +139,7 @@
         "option" : "select",
         "flag" : "OperationMode",
         "idflag" : 6,
-        "listValue" : "1|<i class=\"icon nature-fire14\"><\/i> Chaud;2|<i class=\"icon jeedom-ventilo\"><\/i> Séchage;3|<i class=\"icon nature-snowflake\"><\/i> Froid;7|<i class=\"icon jeedom-ventilo\"><\/i> Ventile;8|<i class=\"icon fa-refresh\"><\/i> Auto"
+        "listValue" : "1|Chaud;2|Séchage;3|Froid;7|Ventile;8|Auto"
       },
       "isVisible": 1,
       "logicalId": "selectOperationMode"
