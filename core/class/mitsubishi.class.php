@@ -311,13 +311,14 @@ class mitsubishi extends eqLogic {
 
   public static function callMelcloud($_url = '', $_header = array(), $_data = array()) {
     $request_http = new com_http($_url);
+    $request_http->setNoReportError(true);
     if (!empty($_data)) {
       $request_http->setPost($_data);
     }
     if (!empty($_header)) {
       $request_http->setHeader($_header);
     }
-    $output = $request_http->exec(30);
+    $output = $request_http->exec(8);
     return json_decode($output, true);
   }
 
