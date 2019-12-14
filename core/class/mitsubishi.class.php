@@ -404,7 +404,7 @@ class mitsubishi extends eqLogic {
       case 7:
       $value = 'Bascule';
       break;
-      case 6:
+      case 0:
       $value = 'Auto';
       break;
       case 5:
