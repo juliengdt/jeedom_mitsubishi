@@ -258,6 +258,20 @@
       }
     },
     {
+      "name": "Vitesse Ventilateur Texte",
+      "type": "info",
+      "subtype": "string",
+      "display": {
+        "generic_type": "DONT"
+      },
+      "isVisible": 0,
+      "logicalId": "ActualFanSpeedText",
+      "template": {
+        "dashboard": "line",
+        "mobile": "line"
+      }
+    },
+    {
       "name": "Température Sonde",
       "type": "info",
       "subtype": "numeric",
