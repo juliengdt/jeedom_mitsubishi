@@ -12,7 +12,7 @@
         "option" : "select",
         "flag" : "VaneVertical",
         "idflag" : 16,
-        "listValue" : "1|Haut;2|Haut-Milieu;3|Milieu;4|Bas-Milieu;5|Bas;0|Auto;7|Bascule"
+        "listValue" : "1|Haut;2|Haut-Milieu;3|Milieu;4|Bas-Milieu;5|Bas;0|Auto;7|Bascule;12|Bascule-Bidirectionnelle"
       },
       "isVisible": 1,
       "value": "Mode Vertical",
