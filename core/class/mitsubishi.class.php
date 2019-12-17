@@ -99,6 +99,7 @@ class mitsubishi extends eqLogic {
       $cmdlogic->save();
     }
     $mitsubishi->checkAndUpdateCmd('ActualFanSpeed', $device['Device']['FanSpeed']);
+    $mitsubishi->updateActualFanSpeed($device['Device']['FanSpeed']);
     $mitsubishi->checkAndUpdateCmd('RoomTemperature', $device['Device']['RoomTemperature']);
     $mitsubishi->checkAndUpdateCmd('SetTemperature', $device['Device']['SetTemperature']);
     $mitsubishi->checkAndUpdateCmd('OperationMode', $device['Device']['OperationMode']);
@@ -368,6 +369,13 @@ class mitsubishi extends eqLogic {
       break;
     }
     $this->checkAndUpdateCmd('OperationModeText', $value);
+  }
+  
+  public function updateActualFanSpeed($_option){
+    if ($_option == "0"){
+      $_option = "Auto";
+    }
+    $this->checkAndUpdateCmd('ActualFanSpeedText', $_option);
   }
 
   public function updateVaneHorizontal($_option){
