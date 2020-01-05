@@ -116,7 +116,7 @@
         "flag" : "SetHeatFlowTemperatureZone1",
         "idflag" : 281474976710688,
         "minValue" : 30,
-        "maxValue" : 55
+        "maxValue" : 60
       },
       "isVisible": 1,
       "logicalId": "actionSetHeatFlowTemperatureZone1",
