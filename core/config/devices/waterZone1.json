@@ -120,7 +120,7 @@
       },
       "isVisible": 1,
       "logicalId": "actionSetHeatFlowTemperatureZone1",
-      "value": "Consigne"
+      "value": "Consigne Mode Température Eau"
     },
     {
       "name": "Mode",
