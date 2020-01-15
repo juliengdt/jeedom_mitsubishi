@@ -210,7 +210,7 @@
       }
     },
     {
-      "name": "Mode Choc Thermique sur les 24 dernières h",
+      "name": "Mode Choc Thermique sur les 24 dernières heures",
       "type": "info",
       "subtype": "numeric",
       "display": {
